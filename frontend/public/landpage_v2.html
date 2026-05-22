@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ŌHM — O som que é só seu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#05020e;--ink:#0a0618;--surface:#110d1e;--surface2:#18132b;
+  --indigo:#534AB7;--indigo2:#7B74D4;--iglow:rgba(83,74,183,0.15);
+  --lav:#c4b5fd;--lavd:rgba(196,181,253,0.5);--lavg:rgba(196,181,253,0.12);
+  --gold:#E8C547;--goldd:rgba(232,197,71,0.55);
+  --text:#e2d9f3;--textd:rgba(226,217,243,0.55);--textg:rgba(226,217,243,0.18);
+  --border:rgba(196,181,253,0.1);--bordeR2:rgba(196,181,253,0.2);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.5}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(5,2,14,0.75);backdrop-filter:blur(24px);border-bottom:.5px solid var(--border)}
+.nlogo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:.25em;color:var(--lav)}
+.nlinks{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nlinks a{color:var(--textd);text-decoration:none;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s}
+.nlinks a:hover{color:var(--lav)}
+.ncta{border:.5px solid var(--lavd) !important;color:var(--lav) !important;padding:.45rem 1.25rem;border-radius:100px;transition:background .3s !important}
+.ncta:hover{background:var(--iglow) !important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:8rem 2rem 5rem;text-align:center;overflow:hidden}
+.g1{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(83,74,183,.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none}
+.g2{position:absolute;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(232,197,71,.07) 0%,transparent 70%);bottom:15%;right:10%;pointer-events:none}
+.g3{position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(196,181,253,.06) 0%,transparent 70%);top:20%;left:8%;pointer-events:none}
+.om-bg{font-family:'Cormorant Garamond',serif;font-size:clamp(8rem,20vw,16rem);color:var(--lav);opacity:.07;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:breathe 10s ease-in-out infinite;line-height:1}
+@keyframes breathe{0%,100%{opacity:.05;transform:translate(-50%,-50%) scale(1)}50%{opacity:.12;transform:translate(-50%,-50%) scale(1.04)}}
+.eyebrow{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--goldd);margin-bottom:1.5rem;position:relative;z-index:2;animation:fadeUp 1s ease .2s both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,12vw,9rem);font-weight:300;letter-spacing:.18em;color:var(--lav);line-height:1;position:relative;z-index:2;animation:fadeUp 1s ease .4s both}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.4rem);font-weight:300;font-style:italic;color:var(--textd);margin-top:.75rem;letter-spacing:.05em;position:relative;z-index:2;animation:fadeUp 1s ease .6s both}
+.hero-desc{max-width:540px;font-size:.92rem;color:var(--textd);line-height:1.9;margin-top:2rem;position:relative;z-index:2;animation:fadeUp 1s ease .8s both}
+.hero-acts{display:flex;gap:1rem;margin-top:2.5rem;position:relative;z-index:2;animation:fadeUp 1s ease 1s both;flex-wrap:wrap;justify-content:center}
+.btn-p{background:var(--indigo);color:white;border:none;padding:.9rem 2.5rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:400;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(83,74,183,.45)}
+.btn-g{background:transparent;color:var(--lavd);border:.5px solid var(--border);padding:.9rem 2.5rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.88rem;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-g:hover{border-color:var(--lavd);color:var(--lav)}
+.hero-wave{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:4rem;position:relative;z-index:2;animation:fadeUp 1s ease 1.2s both;height:40px}
+.hbar{width:2px;border-radius:2px;background:var(--indigo);opacity:.35;animation:wv 2s ease-in-out infinite}
+@keyframes wv{0%,100%{transform:scaleY(1)}50%{transform:scaleY(2.5)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* TRUST BAR */
+.trust{background:var(--surface);border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:1.25rem 4rem;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.6rem;font-size:.72rem;color:var(--textd);letter-spacing:.08em}
+.trust-dot{width:4px;height:4px;border-radius:50%;background:var(--indigo2);flex-shrink:0}
+
+/* SECTIONS */
+.sec{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+.sec-label{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--goldd);margin-bottom:.75rem;display:block}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:var(--lav);line-height:1.2;margin-bottom:1.25rem}
+.sec-title em{font-style:italic;color:var(--textd)}
+.sec-body{font-size:.9rem;color:var(--textd);line-height:1.9;max-width:600px}
+.divider{height:.5px;background:var(--border);max-width:1100px;margin:0 auto}
+
+/* PERSONALIZAÇÃO — COMO CHEGAMOS */
+.persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;margin-top:3rem;border:.5px solid var(--border);border-radius:20px;overflow:hidden}
+.persona-block{padding:2.5rem 2rem;background:var(--surface);transition:background .3s}
+.persona-block:hover{background:var(--surface2)}
+.pb-icon{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--indigo2);opacity:.5;margin-bottom:1rem;line-height:1}
+.pb-title{font-size:.8rem;font-weight:500;color:var(--lav);letter-spacing:.05em;margin-bottom:.5rem}
+.pb-desc{font-size:.82rem;color:var(--textd);line-height:1.75}
+.pb-example{margin-top:1rem;background:var(--iglow);border:.5px solid rgba(83,74,183,.2);border-radius:10px;padding:.75rem 1rem;font-size:.75rem;color:var(--lav);font-style:italic;line-height:1.6}
+
+/* DEMO INTERATIVO */
+.demo-wrap{background:var(--surface);border:.5px solid var(--border);border-radius:24px;padding:3rem 2.5rem;margin-top:3rem;position:relative;overflow:hidden}
+.demo-wrap::before{content:'ॐ';position:absolute;font-family:'Cormorant Garamond',serif;font-size:16rem;color:var(--lav);opacity:.03;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.demo-inputs{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.75rem;margin-bottom:2rem}
+.demo-input{background:rgba(196,181,253,.06);border:.5px solid var(--border);border-radius:10px;padding:.7rem 1rem;color:var(--text);font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;width:100%;transition:border .2s}
+.demo-input:focus{border-color:var(--lavd)}
+.demo-select{background:rgba(196,181,253,.06);border:.5px solid var(--border);border-radius:10px;padding:.7rem 1rem;color:var(--text);font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;width:100%;cursor:pointer}
+.demo-select option{background:#1a1025}
+.demo-btn{background:var(--indigo);color:white;border:none;border-radius:10px;padding:.75rem 2rem;font-family:'DM Sans',sans-serif;font-size:.85rem;cursor:pointer;transition:all .2s;width:100%;margin-top:.25rem}
+.demo-btn:hover{opacity:.85}
+.demo-result{text-align:center;padding:1.5rem 0 .5rem}
+.demo-mantra-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:300;color:var(--lav);letter-spacing:.1em;margin-bottom:.5rem}
+.demo-meaning{font-size:.8rem;color:var(--textd);font-style:italic;margin-bottom:1.5rem;line-height:1.6}
+.demo-pills{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.dpill{display:inline-flex;align-items:center;gap:.35rem;background:rgba(83,74,183,.12);border:.5px solid rgba(83,74,183,.25);border-radius:100px;padding:.3rem .85rem;font-size:.72rem;color:var(--lavd)}
+.dpill-dot{width:4px;height:4px;border-radius:50%;background:var(--indigo2)}
+.demo-explanation{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem}
+.dex-block{background:var(--iglow);border:.5px solid rgba(83,74,183,.15);border-radius:12px;padding:1rem 1.25rem}
+.dex-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--textg);margin-bottom:.4rem}
+.dex-value{font-size:.82rem;color:var(--lav);font-weight:400;margin-bottom:.2rem}
+.dex-desc{font-size:.72rem;color:var(--textd);line-height:1.5}
+
+/* TRADIÇÕES */
+.trad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+.trad-card{background:var(--surface);border:.5px solid var(--border);border-radius:16px;padding:1.75rem;transition:all .3s}
+.trad-card:hover{background:var(--surface2);border-color:var(--bordeR2);transform:translateY(-3px)}
+.trad-icon{font-size:1.5rem;margin-bottom:1rem;opacity:.6}
+.trad-name{font-size:.75rem;font-weight:500;color:var(--lav);letter-spacing:.08em;margin-bottom:.4rem}
+.trad-origin{font-size:.65rem;color:var(--goldd);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
+.trad-desc{font-size:.8rem;color:var(--textd);line-height:1.7}
+
+/* FREQUÊNCIAS */
+.freq-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3rem}
+.fcard{background:var(--surface);border:.5px solid var(--border);border-radius:14px;padding:1.5rem 1.25rem;text-align:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.fcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--indigo);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.fcard:hover::after,.fcard.active::after{transform:scaleX(1)}
+.fcard:hover,.fcard.active{background:var(--surface2);border-color:rgba(83,74,183,.3)}
+.fhz{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);opacity:.75;margin-bottom:.2rem}
+.fname{font-size:.72rem;font-weight:500;color:var(--lav);margin-bottom:.5rem}
+.fdesc{font-size:.68rem;color:var(--textd);line-height:1.55}
+.fbase{font-size:.62rem;color:var(--textg);margin-top:.5rem;font-style:italic}
+
+/* MODOS */
+.modos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.modo-card{background:var(--surface);border:.5px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;transition:all .3s}
+.modo-card:hover{border-color:var(--bordeR2);transform:translateY(-2px)}
+.modo-card.destaque{border-color:rgba(83,74,183,.4);background:rgba(83,74,183,.06)}
+.modo-badge{display:inline-block;background:var(--indigo);color:rgba(255,255,255,.9);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem 1rem;border-radius:100px;margin-bottom:1rem}
+.modo-icon{font-size:2rem;margin-bottom:.75rem;opacity:.5}
+.modo-title{font-size:.9rem;font-weight:500;color:var(--lav);margin-bottom:.5rem}
+.modo-desc{font-size:.82rem;color:var(--textd);line-height:1.7;margin-bottom:1rem}
+.modo-features{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.modo-features li{font-size:.75rem;color:var(--textd);display:flex;align-items:flex-start;gap:.5rem}
+.modo-features li::before{content:'—';color:var(--indigo2);flex-shrink:0}
+
+/* CICLOS */
+.ciclos-table{margin-top:2.5rem;border:.5px solid var(--border);border-radius:16px;overflow:hidden}
+.ciclo-row{display:grid;grid-template-columns:120px 1fr 160px 160px;align-items:center;gap:1.5rem;padding:1.25rem 1.75rem;background:var(--void);border-bottom:.5px solid rgba(196,181,253,.05);transition:background .2s}
+.ciclo-row:last-child{border-bottom:none}
+.ciclo-row:hover{background:var(--surface)}
+.ciclo-row.header{background:var(--surface);border-bottom:.5px solid var(--border)}
+.ciclo-time{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--goldd);font-weight:300}
+.ciclo-nome{font-size:.82rem;font-weight:500;color:var(--lav);margin-bottom:.2rem}
+.ciclo-acao{font-size:.72rem;color:var(--textd)}
+.ciclo-mantra{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:var(--textd);font-style:italic}
+.ciclo-freq{font-size:.72rem;color:var(--indigo2)}
+.col-header{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--textg);font-family:'DM Sans',sans-serif;font-weight:400}
+
+/* PLANS */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.pcard{background:var(--surface);border:.5px solid var(--border);border-radius:20px;padding:2rem 1.5rem;position:relative;transition:transform .3s}
+.pcard:hover{transform:translateY(-4px)}
+.pcard.hot{border-color:rgba(83,74,183,.5);background:rgba(83,74,183,.07)}
+.pcard.top{border-color:rgba(232,197,71,.3);background:rgba(232,197,71,.04)}
+.p-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem 1.25rem;border-radius:0 0 10px 10px;white-space:nowrap}
+.p-badge.purple{background:var(--indigo);color:rgba(255,255,255,.9)}
+.p-badge.gold{background:var(--gold);color:#2a1f00}
+.pname{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--textg);margin-bottom:1rem}
+.pprice{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--lav);line-height:1}
+.pperiod{font-size:.72rem;color:var(--textd);margin-top:.25rem;margin-bottom:1.5rem}
+.pfeats{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.75rem}
+.pfeats li{font-size:.75rem;color:var(--textd);display:flex;align-items:flex-start;gap:.5rem;line-height:1.4}
+.pfeats li::before{content:'—';color:var(--indigo2);flex-shrink:0;margin-top:.05rem}
+.pfeats li.off{opacity:.25}
+.pfeats li.off::before{content:'·'}
+.pbtn{display:block;text-align:center;padding:.7rem;border-radius:10px;font-size:.78rem;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif}
+.pbtn-solid{background:var(--indigo);color:white;border:none;cursor:pointer}
+.pbtn-solid:hover{opacity:.85}
+.pbtn-outline{border:.5px solid var(--bordeR2);color:var(--lavd)}
+.pbtn-outline:hover{border-color:var(--lavd);color:var(--lav)}
+.pbtn-gold{background:var(--gold);color:#1a1200;border:none;cursor:pointer;font-weight:500}
+.pbtn-gold:hover{opacity:.88}
+
+/* HONESTIDADE */
+.honest{background:rgba(83,74,183,.05);border:.5px solid rgba(83,74,183,.18);border-radius:24px;padding:3.5rem;margin-top:2.5rem}
+.honest-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--lav);margin-bottom:1.25rem}
+.honest-text{font-size:.88rem;color:var(--textd);line-height:1.95;max-width:680px}
+.honest-quote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--lavd);border-left:2px solid var(--indigo);padding-left:1.5rem;margin-top:1.75rem;line-height:1.7}
+
+/* TESTIMONIALS */
+.testi{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.tcard{background:var(--surface);border:.5px solid var(--border);border-radius:18px;padding:1.75rem}
+.ttext{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--textd);line-height:1.75;margin-bottom:1.25rem}
+.tauthor{display:flex;align-items:center;gap:.6rem}
+.tavatar{width:34px;height:34px;border-radius:50%;background:var(--iglow);border:.5px solid rgba(83,74,183,.25);display:flex;align-items:center;justify-content:center;font-size:.68rem;color:var(--lavd);font-weight:500;flex-shrink:0}
+.tname{font-size:.78rem;font-weight:500;color:var(--lav)}
+.trole{font-size:.67rem;color:var(--textg)}
+
+/* CTA FINAL */
+.cta-final{text-align:center;padding:5rem 2rem;position:relative;overflow:hidden}
+.cta-final .g1{width:500px;height:300px;top:50%;left:50%;transform:translate(-50%,-50%)}
+
+/* FOOTER */
+footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.flogo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:.2em;color:var(--lav);opacity:.35}
+.ftext{font-size:.7rem;color:var(--textg);line-height:1.8;text-align:center;flex:1}
+.flinks{display:flex;gap:1.5rem}
+.flinks a{font-size:.7rem;color:var(--textg);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--lavd)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--indigo);border-radius:2px}
+
+@media(max-width:1024px){
+  .persona-grid,.demo-inputs,.demo-explanation,.trad-grid,.freq-grid,.modos-grid,.plans,.testi{grid-template-columns:1fr 1fr}
+  .ciclo-row{grid-template-columns:100px 1fr;gap:.75rem}
+  .ciclo-mantra,.ciclo-freq{display:none}
+  nav{padding:1rem 1.5rem}
+  .trust{padding:1rem 1.5rem;gap:1.5rem}
+  footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
+  .flinks{justify-content:center}
+}
+@media(max-width:640px){
+  .persona-grid,.demo-inputs,.demo-explanation,.trad-grid,.freq-grid,.modos-grid,.plans,.testi{grid-template-columns:1fr}
+  .nlinks{display:none}
+  .hero-title{font-size:3.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nlogo">ŌHM</div>
+  <ul class="nlinks">
+    <li><a href="#como-chegamos">Como funciona</a></li>
+    <li><a href="#frequencias">Frequências</a></li>
+    <li><a href="#modos">Modos</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="http://187.77.60.16:4100" class="ncta">Começar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="g1"></div><div class="g2"></div><div class="g3"></div>
+  <div class="om-bg">ॐ</div>
+  <p class="eyebrow">Sânscrito védico · Numerologia hermética · Tradição zoroastrista</p>
+  <h1 class="hero-title">ŌHM</h1>
+  <p class="hero-sub">O som que foi feito para você</p>
+  <p class="hero-desc">
+    Seu nome, sua data de nascimento, sua hora de entrada no mundo —
+    cada detalhe carrega uma vibração única. O ŌHM decifra isso com base em três
+    tradições milenares e transforma em um mantra só seu, emitido 24 horas por dia.
+  </p>
+  <div class="hero-acts">
+    <a href="http://187.77.60.16:4100" class="btn-p">Descobrir meu mantra</a>
+    <a href="#como-chegamos" class="btn-g">Como chegamos ao seu mantra</a>
+  </div>
+  <div class="hero-wave">
+    <div class="hbar" style="height:8px;animation-delay:0s"></div>
+    <div class="hbar" style="height:18px;animation-delay:.08s"></div>
+    <div class="hbar" style="height:28px;animation-delay:.16s"></div>
+    <div class="hbar" style="height:22px;animation-delay:.24s"></div>
+    <div class="hbar" style="height:34px;animation-delay:.32s"></div>
+    <div class="hbar" style="height:16px;animation-delay:.4s"></div>
+    <div class="hbar" style="height:26px;animation-delay:.48s"></div>
+    <div class="hbar" style="height:12px;animation-delay:.56s"></div>
+    <div class="hbar" style="height:30px;animation-delay:.64s"></div>
+    <div class="hbar" style="height:20px;animation-delay:.72s"></div>
+    <div class="hbar" style="height:24px;animation-delay:.8s"></div>
+    <div class="hbar" style="height:14px;animation-delay:.88s"></div>
+    <div class="hbar" style="height:22px;animation-delay:.96s"></div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item"><span class="trust-dot"></span>Tradição védica — 3.000 anos</div>
+  <div class="trust-item"><span class="trust-dot"></span>Hermetismo clássico</div>
+  <div class="trust-item"><span class="trust-dot"></span>Zoroastrismo — Avesta</div>
+  <div class="trust-item"><span class="trust-dot"></span>Numerologia pitagórica</div>
+  <div class="trust-item"><span class="trust-dot"></span>Sem promessas médicas</div>
+  <div class="trust-item"><span class="trust-dot"></span>Total transparência</div>
+</div>
+
+<!-- COMO CHEGAMOS AO SEU MANTRA -->
+<div class="divider rv"></div>
+<section class="sec" id="como-chegamos">
+  <span class="sec-label rv">Total transparência</span>
+  <h2 class="sec-title rv">Como chegamos <em>ao seu mantra</em></h2>
+  <p class="sec-body rv">O ŌHM não inventa. Cada elemento do seu mantra tem uma origem rastreável em tradições com milênios de história. Aqui explicamos exatamente o que usamos e por quê.</p>
+
+  <div class="persona-grid rv">
+    <div class="persona-block">
+      <div class="pb-icon">अ</div>
+      <div class="pb-title">Os 50 fonemas sânscritos</div>
+      <div class="pb-desc">O sânscrito possui 50 fonemas classificados pelo local de articulação na boca e pela qualidade energética que lhes foi atribuída nos Shikshā — tratados fonéticos védicos com mais de 2.500 anos. Cada letra do seu nome é mapeada para um desses fonemas e sua qualidade associada.</div>
+      <div class="pb-example">M → Ma (labial) → propósito e expressão<br>A → A (vogal aberta) → expansão e abertura<br>R → Ra (semivogal) → energia e movimento</div>
+    </div>
+    <div class="persona-block">
+      <div class="pb-icon">९</div>
+      <div class="pb-title">Numerologia védica (Jyotish)</div>
+      <div class="pb-desc">Na astrologia védica, cada número de 1 a 9 corresponde a um planeta regente com qualidades específicas. A soma reduzida da sua data de nascimento revela o Graha (planeta) que domina sua vibração natal — determinando a frequência base do seu mantra.</div>
+      <div class="pb-example">15/03/1985 → 1+5+0+3+1+9+8+5 = 32 → 3+2 = 5<br>Número 5 → Mercúrio (Budha) → comunicação · inteligência · adaptabilidade<br>Frequência base: 528 Hz</div>
+    </div>
+    <div class="persona-block">
+      <div class="pb-icon">☿</div>
+      <div class="pb-title">Hermetismo clássico</div>
+      <div class="pb-desc">A tradição hermética, fundamentada no Corpus Hermeticum (séc. II-III d.C.) e na Tábua de Esmeralda, atribui a cada hora do dia um planeta regente em ciclos de 24h — os "Horários Planetários". A hora do seu nascimento determina o Planeta das Horas, adicionando uma camada de refinamento ao seu perfil vibracional.</div>
+      <div class="pb-example">Nascido às 14h35 numa quinta-feira:<br>Hora 9 de Quinta → Mercúrio como Planeta das Horas<br>Reforça o número védico → mantra amplificado</div>
+    </div>
+    <div class="persona-block">
+      <div class="pb-icon">𐬀</div>
+      <div class="pb-title">Zoroastrismo — Yazatas</div>
+      <div class="pb-desc">No Avesta, o livro sagrado zoroastrista, cada mês e cada dia do ano é presidido por um Yazata — uma entidade divina com qualidades específicas. O ŌHM usa o calendário Zoroastrista (Fasli) para identificar o Yazata do seu dia de nascimento, acrescentando uma intenção arquetípica ao mantra.</div>
+      <div class="pb-example">Nascido em 15 de março → Mês de Urd. → Yazata Asha Vahishta<br>Arquétipo: ordem, retidão, fogo sagrado<br>Intenção adicionada: clareza e propósito</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO INTERATIVO -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">Experimente agora</span>
+  <h2 class="sec-title rv">Gere seu mantra <em>aqui</em></h2>
+  <p class="sec-body rv">Preencha seus dados e veja como chegamos ao seu mantra — com toda a explicação.</p>
+
+  <div class="demo-wrap rv">
+    <div class="demo-inputs">
+      <input class="demo-input" id="d-name" placeholder="Seu nome completo" type="text"/>
+      <input class="demo-input" id="d-date" placeholder="Data de nascimento" type="date"/>
+      <input class="demo-input" id="d-time" placeholder="Hora de nascimento" type="time"/>
+      <select class="demo-select" id="d-intent">
+        <option value="paz">Paz interior</option>
+        <option value="prosperidade">Prosperidade</option>
+        <option value="protecao">Proteção</option>
+        <option value="foco">Foco e clareza</option>
+        <option value="amor">Amor e relações</option>
+        <option value="transformacao">Transformação</option>
+      </select>
+    </div>
+    <button class="demo-btn" onclick="generateDemo()">Gerar meu mantra — com explicação completa</button>
+
+    <div class="demo-result" id="demo-result" style="display:none">
+      <div class="demo-mantra-text" id="dm-mantra"></div>
+      <div class="demo-meaning" id="dm-meaning"></div>
+      <div class="demo-pills" id="dm-pills"></div>
+      <div class="demo-explanation" id="dm-explain"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADIÇÕES -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">As raízes</span>
+  <h2 class="sec-title rv">Três tradições, <em>um mantra</em></h2>
+  <p class="sec-body rv">O ŌHM integra sistemas de conhecimento que nunca foram combinados desta forma — cada um contribuindo com uma camada distinta da sua personalização.</p>
+
+  <div class="trad-grid rv">
+    <div class="trad-card">
+      <div class="trad-icon">🕉</div>
+      <div class="trad-name">Tradição Védica</div>
+      <div class="trad-origin">Índia · 1500 a.C. — presente</div>
+      <div class="trad-desc">Os Vedas são os textos mais antigos do mundo ainda em uso ativo. O sânscrito é sua língua sagrada — com um sistema fonético (Shikshā) que mapeia sons a qualidades arquetípicas. Jyotish, a astrologia védica, é a fonte da nossa numerologia natal.</div>
+    </div>
+    <div class="trad-card">
+      <div class="trad-icon">⚗️</div>
+      <div class="trad-name">Hermetismo Clássico</div>
+      <div class="trad-origin">Egito greco-romano · séc. II — presente</div>
+      <div class="trad-desc">O Corpus Hermeticum atribui a Hermes Trismegisto a síntese do conhecimento egípcio e grego. Os Horários Planetários — ciclos de 24h onde cada hora é regida por um planeta — são usados por tradições herméticas, cabalísticas e astrológicas ocidentais há mais de 2.000 anos.</div>
+    </div>
+    <div class="trad-card">
+      <div class="trad-icon">🔥</div>
+      <div class="trad-name">Zoroastrismo</div>
+      <div class="trad-origin">Pérsia · 1200 a.C. — presente</div>
+      <div class="trad-desc">Uma das mais antigas religiões monoteístas vivas. O Avesta, seu texto sagrado, contém o calendário Zoroastrista onde cada dia e mês é presidido por um Yazata — arquétipo divino com qualidades específicas. Usado para identificar a intenção arquetípica do seu nascimento.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FREQUÊNCIAS -->
+<div class="divider rv"></div>
+<section class="sec" id="frequencias">
+  <span class="sec-label rv">Acústica sagrada</span>
+  <h2 class="sec-title rv">As frequências <em>e o que sabemos sobre elas</em></h2>
+  <p class="sec-body rv">Não inventamos efeitos. Descrevemos o que a acústica e a fisiologia registraram — e o que é apenas tradição e intenção. Você decide o que ressoa.</p>
+
+  <div class="freq-grid rv">
+    <div class="fcard">
+      <div class="fhz">432</div>
+      <div class="fname">Hz — Afinação natural</div>
+      <div class="fdesc">Afinação histórica alternativa ao padrão A=440Hz. Preferida por músicos que buscam timbre mais "orgânico". Base para calma e equilíbrio geral.</div>
+      <div class="fbase">Base: preferência histórica e musical</div>
+    </div>
+    <div class="fcard">
+      <div class="fhz">528</div>
+      <div class="fname">Hz — Transformação</div>
+      <div class="fdesc">Estudos de Rein (1998) registraram efeitos em células expostas a este som. Base científica limitada, mas consistente com relatos subjetivos de bem-estar e foco.</div>
+      <div class="fbase">Base: estudos preliminares + tradição</div>
+    </div>
+    <div class="fcard">
+      <div class="fhz">396</div>
+      <div class="fname">Hz — Liberação</div>
+      <div class="fdesc">Frequência grave envolvente. Associada na tradição somafera a dissolução de padrões densos. Efeito documentado: relaxamento profundo por graves sustentados.</div>
+      <div class="fbase">Base: acústica de graves + tradição</div>
+    </div>
+    <div class="fcard">
+      <div class="fhz">174</div>
+      <div class="fname">Hz — Fundação</div>
+      <div class="fdesc">A mais grave do sistema. Frequências sub-graves têm efeito físico demonstrado — vibração corporal e sensação de enraizamento. Usada para sono e presença.</div>
+      <div class="fbase">Base: efeito físico de sub-graves</div>
+    </div>
+    <div class="fcard">
+      <div class="fhz">40</div>
+      <div class="fname">Hz — Gamma</div>
+      <div class="fdesc">Ondas gamma cerebrais (40 Hz) são associadas a estados de foco e integração neural. Pesquisas do MIT e MIT Media Lab documentaram efeitos em estados cognitivos.</div>
+      <div class="fbase">Base: neurociência — ondas gamma</div>
+    </div>
+  </div>
+</section>
+
+<!-- CICLOS VÉDICOS -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">Ritmo milenar</span>
+  <h2 class="sec-title rv">Os ciclos do dia — <em>automáticos</em></h2>
+  <p class="sec-body rv">A tradição védica divide o dia em 5 ciclos com qualidades distintas. O ŌHM muda o mantra dominante automaticamente conforme o horário — ou você programa o seu próprio ciclo.</p>
+
+  <div class="ciclos-table rv">
+    <div class="ciclo-row header">
+      <div class="col-header">Horário</div>
+      <div class="col-header">Ciclo</div>
+      <div class="col-header">Mantra dominante</div>
+      <div class="col-header">Frequência</div>
+    </div>
+    <div class="ciclo-row">
+      <div class="ciclo-time">04h — 06h</div>
+      <div><div class="ciclo-nome">Brahma Muhurta</div><div class="ciclo-acao">O momento mais sagrado — clareza profunda</div></div>
+      <div class="ciclo-mantra">Gāyatrī Mantra</div>
+      <div class="ciclo-freq">432 Hz</div>
+    </div>
+    <div class="ciclo-row">
+      <div class="ciclo-time">06h — 12h</div>
+      <div><div class="ciclo-nome">Sarga — Criação</div><div class="ciclo-acao">Iniciar, expandir, manifestar</div></div>
+      <div class="ciclo-mantra">Om Gam Namaḥ</div>
+      <div class="ciclo-freq">528 Hz</div>
+    </div>
+    <div class="ciclo-row">
+      <div class="ciclo-time">12h — 18h</div>
+      <div><div class="ciclo-nome">Sthiti — Manutenção</div><div class="ciclo-acao">Sustentar, equilibrar, nutrir</div></div>
+      <div class="ciclo-mantra">Om Śānti Śānti</div>
+      <div class="ciclo-freq">432 Hz</div>
+    </div>
+    <div class="ciclo-row">
+      <div class="ciclo-time">18h — 00h</div>
+      <div><div class="ciclo-nome">Laya — Integração</div><div class="ciclo-acao">Soltar, renovar, integrar</div></div>
+      <div class="ciclo-mantra">Om Namaḥ Śivāya</div>
+      <div class="ciclo-freq">396 Hz</div>
+    </div>
+    <div class="ciclo-row">
+      <div class="ciclo-time">00h — 04h</div>
+      <div><div class="ciclo-nome">Repouso</div><div class="ciclo-acao">Descanso e restauração profunda</div></div>
+      <div class="ciclo-mantra">Om puro</div>
+      <div class="ciclo-freq">174 Hz</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODOS DE VIBRAÇÃO -->
+<div class="divider rv"></div>
+<section class="sec" id="modos">
+  <span class="sec-label rv">Flexibilidade total</span>
+  <h2 class="sec-title rv">Você controla <em>como vibra</em></h2>
+  <p class="sec-body rv">Quatro modos diferentes — do mais simples ao mais completo. Combine emissão no aparelho e em nuvem.</p>
+
+  <div class="modos-grid rv">
+    <div class="modo-card">
+      <div class="modo-icon">◉</div>
+      <div class="modo-title">Modo Simples</div>
+      <div class="modo-desc">Você escolhe uma vibração e o app emite enquanto estiver aberto. Direto, sem configuração.</div>
+      <ul class="modo-features">
+        <li>1 frequência fixa</li>
+        <li>Troca manual a qualquer momento</li>
+        <li>Emissão no seu aparelho</li>
+        <li>Gratuito e Pessoal</li>
+      </ul>
+    </div>
+    <div class="modo-card">
+      <div class="modo-icon">⏱</div>
+      <div class="modo-title">Modo Programado</div>
+      <div class="modo-desc">Você monta sua sequência: 1h em prosperidade, 2h em paz, 30min em proteção. O app troca automaticamente.</div>
+      <ul class="modo-features">
+        <li>Sequências personalizadas</li>
+        <li>Duração por vibração</li>
+        <li>Loop ou sequência única</li>
+        <li>Plano Pessoal e acima</li>
+      </ul>
+    </div>
+    <div class="modo-card destaque">
+      <div class="modo-badge">Mais popular</div>
+      <div class="modo-icon">↻</div>
+      <div class="modo-title">Modo Ciclo Védico</div>
+      <div class="modo-desc">O app segue os ciclos do dia automaticamente — mudando mantra e frequência conforme o horário védico. Zero configuração.</div>
+      <ul class="modo-features">
+        <li>Automático por horário</li>
+        <li>5 ciclos do dia</li>
+        <li>Mantra e frequência por ciclo</li>
+        <li>Plano Pessoal e acima</li>
+      </ul>
+    </div>
+    <div class="modo-card destaque">
+      <div class="modo-badge">Premium</div>
+      <div class="modo-icon">☁</div>
+      <div class="modo-title">Modo 24/7 em Nuvem</div>
+      <div class="modo-desc">O servidor emite sua vibração continuamente — com ou sem seu celular aberto. Você monitora pelo app. Pode combinar com emissão no aparelho.</div>
+      <ul class="modo-features">
+        <li>Emissão no servidor 24/7</li>
+        <li>Independe do celular ligado</li>
+        <li>Monitoramento em tempo real</li>
+        <li>Combinável com aparelho</li>
+        <li>Plano Nuvem</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<div class="divider rv"></div>
+<section class="sec" id="planos">
+  <span class="sec-label rv">Simples e justo</span>
+  <h2 class="sec-title rv">Escolha seu <em>nível de vibração</em></h2>
+
+  <div class="plans rv">
+    <div class="pcard">
+      <div class="pname">Gratuito</div>
+      <div class="pprice">R$0</div>
+      <div class="pperiod">para sempre</div>
+      <ul class="pfeats">
+        <li>OM puro em 432 Hz</li>
+        <li>Om Shanti — paz</li>
+        <li>Ciclo védico do momento</li>
+        <li class="off">Mantra personalizado</li>
+        <li class="off">Modo programado</li>
+        <li class="off">24/7 em nuvem</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-outline">Começar grátis</a>
+    </div>
+
+    <div class="pcard hot">
+      <div class="p-badge purple">Mais popular</div>
+      <div class="pname">Pessoal</div>
+      <div class="pprice">R$9<span style="font-size:1.4rem">,90</span></div>
+      <div class="pperiod">por mês</div>
+      <ul class="pfeats">
+        <li>Mantra personalizado completo</li>
+        <li>Número védico + hora de nascimento</li>
+        <li>Hermetismo + Zoroastrismo</li>
+        <li>Modo programado</li>
+        <li>Ciclo védico automático</li>
+        <li class="off">24/7 em nuvem</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-solid">Assinar agora</a>
+    </div>
+
+    <div class="pcard">
+      <div class="pname">Completo</div>
+      <div class="pprice">R$19<span style="font-size:1.4rem">,90</span></div>
+      <div class="pperiod">por mês · ou R$99/ano</div>
+      <ul class="pfeats">
+        <li>Tudo do Pessoal</li>
+        <li>Biblioteca completa de mantras</li>
+        <li>Novos mantras todo mês</li>
+        <li>Múltiplas intenções simultâneas</li>
+        <li>Modo noturno especial</li>
+        <li class="off">24/7 em nuvem</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-outline">Assinar</a>
+    </div>
+
+    <div class="pcard top">
+      <div class="p-badge gold">Nuvem 24/7</div>
+      <div class="pname">Nuvem</div>
+      <div class="pprice">R$39<span style="font-size:1.4rem">,90</span></div>
+      <div class="pperiod">por mês</div>
+      <ul class="pfeats">
+        <li>Tudo do Completo</li>
+        <li>Emissão no servidor 24/7</li>
+        <li>Independe do celular</li>
+        <li>App no aparelho simultâneo</li>
+        <li>Monitoramento em tempo real</li>
+        <li>Relatório semanal de emissão</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-gold">Quero o Nuvem</a>
+    </div>
+  </div>
+</section>
+
+<!-- HONESTIDADE -->
+<div class="divider rv"></div>
+<section class="sec">
+  <div class="honest rv">
+    <div class="honest-title">O que o ŌHM é — e o que não é</div>
+    <p class="honest-text">
+      O ŌHM não trata doenças. Não promete curas. Não usa estudos falsos. Cada afirmação sobre frequências neste site tem uma nota de rodapé indicando sua base real — seja acústica, neurociência, ou simplesmente tradição milenar.
+      <br><br>
+      Acreditamos que a transparência não diminui o produto — ela o fortalece. Você sabe exatamente de onde vem seu mantra, quais tradições foram usadas, o que a ciência diz sobre cada frequência. Isso é raro no mercado de bem-estar.
+      <br><br>
+      O ŌHM é um app de som personalizado baseado em tradições milenares. O valor que ele tem é subjetivo — e você decide se ressoa com você, com todas as informações na mesa.
+    </p>
+    <div class="honest-quote">
+      "Transparência não é fraqueza. É o único diferencial que ninguém consegue copiar."
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">Experiências</span>
+  <h2 class="sec-title rv">O que dizem <em>quem usa</em></h2>
+  <div class="testi rv">
+    <div class="tcard">
+      <div class="ttext">"Nunca vi um app espiritual explicar tão honestamente o que faz. O meu mantra — baseado no meu número védico 7 e no Yazata Anahita — faz total sentido com o meu caminho."</div>
+      <div class="tauthor"><div class="tavatar">MA</div><div><div class="tname">Maria A.</div><div class="trole">Terapeuta holística · SP</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="ttext">"O modo programado mudou tudo pra mim. De manhã emito foco, à tarde prosperidade, à noite paz. O app troca sozinho. Uso o modo nuvem também — fica rodando mesmo quando esqueço o celular."</div>
+      <div class="tauthor"><div class="tavatar">RC</div><div><div class="tname">Ricardo C.</div><div class="trole">Empresário · Curitiba</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="ttext">"A parte do Zoroastrismo me surpreendeu. Nunca tinha visto isso integrado com sânscrito. A explicação de cada elemento do mantra é o que me convenceu — não foi promessa de milagre."</div>
+      <div class="tauthor"><div class="tavatar">FL</div><div><div class="tname">Fernanda L.</div><div class="trole">Instrutora de yoga · Florianópolis</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="divider rv"></div>
+<div class="cta-final rv">
+  <div class="g1"></div>
+  <span class="sec-label" style="display:block">Comece agora</span>
+  <h2 class="sec-title" style="max-width:480px;margin:0 auto 1.25rem">Descubra o som<br><em>que foi feito para você</em></h2>
+  <p style="font-size:.88rem;color:var(--textd);margin-bottom:2.5rem">Gratuito para começar. Sem cartão de crédito. Explicação completa de cada elemento.</p>
+  <a href="http://187.77.60.16:4100" class="btn-p" style="font-size:.95rem;padding:1rem 3rem">Gerar meu mantra agora</a>
+</div>
+
+<footer>
+  <div class="flogo">ŌHM</div>
+  <p class="ftext">Baseado em tradição védica · Hermetismo clássico · Zoroastrismo<br>Não tratamos doenças · Sem promessas médicas · Total transparência<br>© 2024 ŌHM</p>
+  <div class="flinks">
+    <a href="#">Privacidade</a>
+    <a href="#">Termos</a>
+    <a href="http://187.77.60.16:4100">App</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Freq card click
+document.querySelectorAll('.fcard').forEach(c=>{
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.fcard').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Demo generator
+const PHONEMES={
+  a:'expansão',b:'sustentação',c:'criatividade',d:'determinação',
+  e:'expressão',f:'fluidez',g:'crescimento',h:'elevação',i:'intuição',
+  j:'sabedoria',k:'estabilidade',l:'leveza',m:'propósito',n:'renovação',
+  o:'conexão',p:'proteção',q:'clareza',r:'movimento',s:'pureza',
+  t:'transformação',u:'unidade',v:'vitalidade',w:'força',x:'transmutação',
+  y:'harmonia',z:'equilíbrio'
+};
+const VEDIC={
+  1:{planet:'Sol',quality:'liderança e força',freq:528},
+  2:{planet:'Lua',quality:'intuição e emoção',freq:432},
+  3:{planet:'Júpiter',quality:'sabedoria e expansão',freq:528},
+  4:{planet:'Rahu',quality:'transformação e quebra',freq:396},
+  5:{planet:'Mercúrio',quality:'comunicação e inteligência',freq:528},
+  6:{planet:'Vênus',quality:'amor e beleza',freq:528},
+  7:{planet:'Ketu',quality:'espiritualidade e dissolução',freq:432},
+  8:{planet:'Saturno',quality:'disciplina e karma',freq:396},
+  9:{planet:'Marte',quality:'energia e ação',freq:396}
+};
+const YAZATA={
+  1:'Hormozd — criação e ordem',2:'Bahman — mente boa',3:'Ardibehesht — fogo sagrado',
+  4:'Shahrivar — metais e poder',5:'Espandarmaz — terra e devoção',6:'Khordad — saúde e perfeição',
+  7:'Amordad — imortalidade',8:'Daepadar — criação divina',9:'Azar — fogo',10:'Aban — água',
+  11:'Khorshed — Sol',12:'Mah — Lua',13:'Tir — Sirius e chuva',14:'Gosh — alma animal',
+  15:'Daepamihr — criação',16:'Mihr — contrato e amizade',17:'Srosh — obediência divina',
+  18:'Rashn — justiça',19:'Farvardin — ancestrais',20:'Bahram — vitória',21:'Ram — paz',
+  22:'Bad — vento',23:'Daepadin — criação',24:'Din — consciência',25:'Ard — fortuna',
+  26:'Ashtad — retidão',27:'Asman — céu',28:'Zamyad — terra',29:'Mahraspand — palavra sagrada',
+  30:'Anagran — luz eterna'
+};
+const HERMETIC_HOURS=[
+  ['Sol','Vênus','Mercúrio','Lua','Saturno','Júpiter','Marte'],
+  ['Mercúrio','Lua','Saturno','Júpiter','Marte','Sol','Vênus'],
+  ['Saturno','Júpiter','Marte','Sol','Vênus','Mercúrio','Lua'],
+  ['Júpiter','Marte','Sol','Vênus','Mercúrio','Lua','Saturno'],
+  ['Vênus','Mercúrio','Lua','Saturno','Júpiter','Marte','Sol'],
+  ['Lua','Saturno','Júpiter','Marte','Sol','Vênus','Mercúrio'],
+  ['Marte','Sol','Vênus','Mercúrio','Lua','Saturno','Júpiter']
+];
+const INTENTIONS={
+  paz:{mantra:'Om Shanti Shanti Shanti',freq:432},
+  prosperidade:{mantra:'Om Shrim Mahalakshmyai Namah',freq:528},
+  protecao:{mantra:'Om Maha Mrityunjaya Namah',freq:396},
+  foco:{mantra:'Om Gam Ganapataye Namah',freq:40},
+  amor:{mantra:'Om Klim Namah',freq:528},
+  transformacao:{mantra:'Om Namah Shivaya',freq:432}
+};
+
+function vedicNum(dateStr){
+  if(!dateStr)return{number:5,planet:'Mercúrio',quality:'comunicação e inteligência',freq:528};
+  const digits=dateStr.replace(/[^0-9]/g,'').split('').map(Number);
+  let s=digits.reduce((a,b)=>a+b,0);
+  while(s>9)s=String(s).split('').map(Number).reduce((a,b)=>a+b,0);
+  return{number:s,...(VEDIC[s]||VEDIC[5])};
+}
+
+function hermeticHour(dateStr,timeStr){
+  if(!dateStr||!timeStr)return{planet:'Mercúrio',hora:9};
+  const d=new Date(dateStr);
+  const dow=d.getDay();
+  const [h]=timeStr.split(':').map(Number);
+  const hourIdx=h%7;
+  const planet=HERMETIC_HOURS[dow][hourIdx];
+  return{planet,hora:h};
+}
+
+function yazata(dateStr){
+  if(!dateStr)return'Mihr — contrato e amizade';
+  const d=new Date(dateStr);
+  const day=d.getDate();
+  return YAZATA[day]||YAZATA[16];
+}
+
+function generateDemo(){
+  const name=document.getElementById('d-name').value||'Marcos';
+  const date=document.getElementById('d-date').value;
+  const time=document.getElementById('d-time').value;
+  const intent=document.getElementById('d-intent').value;
+
+  const letters=[...new Set(name.toLowerCase().replace(/[^a-z]/g,'').split(''))].slice(0,4);
+  const qualities=letters.map(l=>PHONEMES[l]||'luz').join(' · ');
+  const syllables=letters.map(l=>l.toUpperCase()+'a').join('·');
+  const mantraBase=`Om ${syllables} Namah`;
+  const intentData=INTENTIONS[intent]||INTENTIONS.paz;
+  const vedicData=vedicNum(date);
+  const herData=hermeticHour(date,time);
+  const yazData=yazata(date);
+
+  document.getElementById('dm-mantra').textContent=intentData.mantra+' — '+mantraBase;
+  document.getElementById('dm-meaning').textContent=`Honro a vibração de ${qualities} em mim — intenção: ${intent}`;
+
+  document.getElementById('dm-pills').innerHTML=`
+    <span class="dpill"><span class="dpill-dot"></span>${intentData.freq} Hz</span>
+    <span class="dpill"><span class="dpill-dot"></span>Número védico ${vedicData.number} — ${vedicData.planet}</span>
+    <span class="dpill"><span class="dpill-dot"></span>${herData.planet} hermético</span>
+  `;
+
+  document.getElementById('dm-explain').innerHTML=`
+    <div class="dex-block">
+      <div class="dex-label">Fonemas do nome</div>
+      <div class="dex-value">${syllables}</div>
+      <div class="dex-desc">Letras de "${name}" → qualidades: ${qualities}</div>
+    </div>
+    <div class="dex-block">
+      <div class="dex-label">Número védico · Planeta</div>
+      <div class="dex-value">${vedicData.number} — ${vedicData.planet}</div>
+      <div class="dex-desc">${vedicData.quality} · frequência base ${vedicData.freq} Hz</div>
+    </div>
+    <div class="dex-block">
+      <div class="dex-label">Yazata do nascimento</div>
+      <div class="dex-value" style="font-size:.75rem">${yazData.split('—')[0]}</div>
+      <div class="dex-desc">Arquétipo zoroastrista do seu dia de nascimento</div>
+    </div>
+  `;
+
+  const r=document.getElementById('demo-result');
+  r.style.display='block';
+  r.style.opacity='0';
+  r.style.transition='opacity .5s';
+  setTimeout(()=>r.style.opacity='1',50);
+}
+</script>
+</body>
+</html>

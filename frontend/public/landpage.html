@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ŌHM — O som que é só seu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0612;
+  --void: #06030f;
+  --indigo: #534AB7;
+  --indigo-light: #7B74D4;
+  --indigo-glow: rgba(83,74,183,0.18);
+  --lavender: #c4b5fd;
+  --lavender-dim: rgba(196,181,253,0.45);
+  --gold: #E8C547;
+  --gold-dim: rgba(232,197,71,0.6);
+  --text: #e2d9f3;
+  --text-dim: rgba(226,217,243,0.5);
+  --text-ghost: rgba(226,217,243,0.2);
+  --card-bg: rgba(196,181,253,0.04);
+  --card-border: rgba(196,181,253,0.12);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(6,3,15,0.7);
+  backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--card-border);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--lavender);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--lavender); }
+
+.nav-cta {
+  background: transparent;
+  border: 0.5px solid var(--lavender-dim);
+  color: var(--lavender) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  transition: background 0.3s !important;
+}
+
+.nav-cta:hover { background: var(--indigo-glow) !important; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* AMBIENT GLOW */
+.glow-1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(83,74,183,0.15) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -60%);
+  pointer-events: none;
+}
+
+.glow-2 {
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,197,71,0.08) 0%, transparent 70%);
+  bottom: 20%; right: 15%;
+  pointer-events: none;
+}
+
+/* OM SYMBOL */
+.om-symbol {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(5rem, 12vw, 9rem);
+  color: var(--lavender);
+  opacity: 0.15;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: breathe 8s ease-in-out infinite;
+  letter-spacing: 0;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.1; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: 0.2; transform: translate(-50%,-50%) scale(1.05); }
+}
+
+.hero-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1s ease 0.2s both;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--lavender);
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1s ease 0.4s both;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-top: 1rem;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1s ease 0.6s both;
+}
+
+.hero-desc {
+  max-width: 520px;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1s ease 0.8s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1s ease 1s both;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: var(--indigo);
+  color: white;
+  border: none;
+  padding: 0.9rem 2.5rem;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(83,74,183,0.4); }
+.btn-primary:hover::after { opacity: 1; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--lavender-dim);
+  border: 0.5px solid var(--card-border);
+  padding: 0.9rem 2.5rem;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.btn-ghost:hover { border-color: var(--lavender-dim); color: var(--lavender); }
+
+/* WAVE DIVIDER */
+.wave-line {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1s ease 1.2s both;
+}
+
+.wave-bar {
+  width: 2px;
+  border-radius: 2px;
+  background: var(--indigo);
+  opacity: 0.4;
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(2.5); }
+}
+
+/* SECTIONS */
+section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: var(--lavender);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+/* HOW IT WORKS */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5px;
+  margin-top: 4rem;
+  border: 0.5px solid var(--card-border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.step {
+  padding: 2.5rem 2rem;
+  background: var(--card-bg);
+  position: relative;
+  transition: background 0.3s;
+}
+
+.step:hover { background: rgba(196,181,253,0.07); }
+
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--indigo);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.step-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--lavender);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.step-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* MANTRA DEMO */
+.mantra-demo {
+  background: var(--card-bg);
+  border: 0.5px solid var(--card-border);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  text-align: center;
+  margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mantra-demo::before {
+  content: 'ॐ';
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20rem;
+  color: var(--lavender);
+  opacity: 0.03;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.mantra-demo-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 1.5rem;
+}
+
+.mantra-demo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: var(--lavender);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.mantra-demo-meaning {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.mantra-freq-pills {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(83,74,183,0.15);
+  border: 0.5px solid rgba(83,74,183,0.3);
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  color: var(--lavender-dim);
+}
+
+.pill-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--indigo-light);
+}
+
+/* FREQ TABLE */
+.freq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.freq-card {
+  background: var(--card-bg);
+  border: 0.5px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.freq-card:hover {
+  background: rgba(196,181,253,0.07);
+  border-color: rgba(196,181,253,0.2);
+  transform: translateY(-3px);
+}
+
+.freq-hz {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 0.25rem;
+}
+
+.freq-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--lavender);
+  margin-bottom: 0.5rem;
+}
+
+.freq-desc {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* CYCLES */
+.cycles {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1px;
+  background: var(--card-border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cycle-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: var(--void);
+  transition: background 0.3s;
+}
+
+.cycle-row:hover { background: var(--card-bg); }
+
+.cycle-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--gold-dim);
+  font-weight: 300;
+}
+
+.cycle-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--lavender);
+  margin-bottom: 0.2rem;
+}
+
+.cycle-action {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.cycle-mantra {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  font-style: italic;
+  text-align: right;
+}
+
+/* PLANS */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.plan-card {
+  background: var(--card-bg);
+  border: 0.5px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.plan-card:hover { transform: translateY(-4px); }
+
+.plan-card.featured {
+  border-color: rgba(83,74,183,0.5);
+  background: rgba(83,74,183,0.08);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--indigo);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 1.25rem;
+  border-radius: 0 0 10px 10px;
+}
+
+.plan-name {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 1.25rem;
+}
+
+.plan-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--lavender);
+  line-height: 1;
+}
+
+.plan-price sup {
+  font-size: 1.2rem;
+  vertical-align: super;
+  color: var(--text-dim);
+}
+
+.plan-period {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+  margin-bottom: 1.75rem;
+}
+
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.plan-features li {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+
+.plan-features li::before {
+  content: '—';
+  color: var(--indigo-light);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.plan-features li.locked {
+  opacity: 0.3;
+}
+
+.plan-features li.locked::before { content: '·'; }
+
+/* TESTIMONIALS */
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.testimonial {
+  background: var(--card-bg);
+  border: 0.5px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.author-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--indigo-glow);
+  border: 0.5px solid rgba(83,74,183,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--lavender-dim);
+  font-weight: 500;
+}
+
+.author-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--lavender);
+}
+
+.author-role {
+  font-size: 0.7rem;
+  color: var(--text-ghost);
+}
+
+/* HONESTY BLOCK */
+.honesty {
+  background: rgba(83,74,183,0.06);
+  border: 0.5px solid rgba(83,74,183,0.2);
+  border-radius: 24px;
+  padding: 3rem;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.honesty-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--lavender);
+  margin-bottom: 1.25rem;
+}
+
+.honesty-text {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.9;
+  max-width: 640px;
+}
+
+.honesty-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--lavender-dim);
+  border-left: 2px solid var(--indigo);
+  padding-left: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* FOOTER */
+footer {
+  border-top: 0.5px solid var(--card-border);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--lavender);
+  opacity: 0.4;
+  margin-bottom: 1rem;
+}
+
+.footer-text {
+  font-size: 0.75rem;
+  color: var(--text-ghost);
+  line-height: 1.8;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--indigo); border-radius: 2px; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .cycle-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  .cycle-mantra { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ŌHM</div>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#frequencias">Frequências</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="http://187.77.60.16:4100" class="nav-cta">Começar agora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+  <div class="om-symbol">ॐ</div>
+
+  <p class="hero-eyebrow">Tradição védica · Vibração personalizada</p>
+  <h1 class="hero-title">ŌHM</h1>
+  <p class="hero-subtitle">O som que é só seu</p>
+  <p class="hero-desc">
+    Seu nome carrega uma vibração. Sua data de nascimento, outra.
+    O ŌHM transforma isso em um mantra único — e o emite enquanto você vive.
+    Sem promessas de milagre. Só 3.000 anos de tradição védica transformados em som.
+  </p>
+
+  <div class="hero-actions">
+    <a href="http://187.77.60.16:4100/register" class="btn-primary">Gerar meu mantra</a>
+    <a href="#como-funciona" class="btn-ghost">Como funciona</a>
+  </div>
+
+  <div class="wave-line">
+    <div class="wave-bar" style="height:8px; animation-delay:0s"></div>
+    <div class="wave-bar" style="height:16px; animation-delay:.1s"></div>
+    <div class="wave-bar" style="height:24px; animation-delay:.2s"></div>
+    <div class="wave-bar" style="height:32px; animation-delay:.3s"></div>
+    <div class="wave-bar" style="height:20px; animation-delay:.4s"></div>
+    <div class="wave-bar" style="height:28px; animation-delay:.5s"></div>
+    <div class="wave-bar" style="height:14px; animation-delay:.6s"></div>
+    <div class="wave-bar" style="height:22px; animation-delay:.7s"></div>
+    <div class="wave-bar" style="height:30px; animation-delay:.8s"></div>
+    <div class="wave-bar" style="height:18px; animation-delay:.9s"></div>
+    <div class="wave-bar" style="height:26px; animation-delay:1s"></div>
+    <div class="wave-bar" style="height:12px; animation-delay:1.1s"></div>
+    <div class="wave-bar" style="height:20px; animation-delay:1.2s"></div>
+  </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <span class="section-label reveal">O processo</span>
+  <h2 class="section-title reveal">Como o ŌHM <em>cria</em><br>sua vibração</h2>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Seu nome em sânscrito</div>
+      <div class="step-desc">Cada letra do seu nome é mapeada para um fonema védico com uma qualidade milenar — expansão, propósito, movimento, pureza.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Número védico</div>
+      <div class="step-desc">Sua data de nascimento revela seu número védico — o planeta regente que define sua frequência base e sua essência energética.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Sua intenção</div>
+      <div class="step-desc">Você escolhe o que quer cultivar — paz, prosperidade, proteção, amor, foco ou transformação — e o mantra se alinha a ela.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Emissão 24/7</div>
+      <div class="step-desc">O app emite seu mantra único em frequência contínua enquanto você vive. Discreto, constante, só seu.</div>
+    </div>
+  </div>
+
+  <div class="mantra-demo reveal" style="margin-top:3rem;">
+    <div class="mantra-demo-label">Exemplo de mantra gerado</div>
+    <div class="mantra-demo-name" id="demo-mantra">Om Ma·Ra·Ka·Sa Namah</div>
+    <div class="mantra-demo-meaning" id="demo-meaning">Honro a vibração de propósito · movimento · estabilidade · pureza em mim</div>
+    <div class="mantra-freq-pills">
+      <span class="pill"><span class="pill-dot"></span>528 Hz</span>
+      <span class="pill"><span class="pill-dot"></span>Ciclo de criação</span>
+      <span class="pill"><span class="pill-dot"></span>Número védico 5 — Mercúrio</span>
+    </div>
+  </div>
+</section>
+
+<!-- FREQUÊNCIAS -->
+<section id="frequencias" style="border-top: 0.5px solid var(--card-border);">
+  <span class="section-label reveal">Acústica sagrada</span>
+  <h2 class="section-title reveal">As frequências <em>que</em><br>o ŌHM emite</h2>
+  <p class="reveal" style="font-size:.9rem; color:var(--text-dim); line-height:1.8; max-width:560px;">
+    Cada intenção corresponde a uma frequência específica. O app seleciona a mais adequada ao seu perfil e a emite em onda senoidal pura.
+  </p>
+
+  <div class="freq-grid reveal">
+    <div class="freq-card">
+      <div class="freq-hz">432</div>
+      <div class="freq-name">Hz — Afinação natural</div>
+      <div class="freq-desc">Base harmônica histórica. Usada como frequência de equilíbrio geral e clareza mental.</div>
+    </div>
+    <div class="freq-card">
+      <div class="freq-hz">528</div>
+      <div class="freq-name">Hz — Transformação</div>
+      <div class="freq-desc">Associada a estudos de redução de estresse. Base para intenções de amor e prosperidade.</div>
+    </div>
+    <div class="freq-card">
+      <div class="freq-hz">396</div>
+      <div class="freq-name">Hz — Liberação</div>
+      <div class="freq-desc">Frequência grave e envolvente. Usada para proteção, enraizamento e dissolução de padrões.</div>
+    </div>
+    <div class="freq-card">
+      <div class="freq-hz">174</div>
+      <div class="freq-name">Hz — Fundação</div>
+      <div class="freq-desc">A mais grave do sistema. Promove sensação de segurança e conexão com o presente.</div>
+    </div>
+    <div class="freq-card">
+      <div class="freq-hz">40</div>
+      <div class="freq-name">Hz — Gamma</div>
+      <div class="freq-desc">Ondas gamma cerebrais. Associadas a estados de foco profundo e clareza cognitiva.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CICLOS VÉDICOS -->
+<section style="border-top: 0.5px solid var(--card-border);">
+  <span class="section-label reveal">Ritmo milenar</span>
+  <h2 class="section-title reveal">O ŌHM acompanha<br><em>os ciclos do dia</em></h2>
+  <p class="reveal" style="font-size:.9rem; color:var(--text-dim); line-height:1.8; max-width:560px;">
+    A tradição védica divide o dia em ciclos com qualidades distintas. O app muda o mantra dominante automaticamente conforme o horário.
+  </p>
+
+  <div class="cycles reveal">
+    <div class="cycle-row">
+      <div class="cycle-time">04h — 06h</div>
+      <div>
+        <div class="cycle-name">Brahma Muhurta</div>
+        <div class="cycle-action">O momento mais sagrado do dia</div>
+      </div>
+      <div class="cycle-mantra">Gāyatrī</div>
+    </div>
+    <div class="cycle-row">
+      <div class="cycle-time">06h — 12h</div>
+      <div>
+        <div class="cycle-name">Sarga — Criação</div>
+        <div class="cycle-action">Iniciar, expandir, manifestar</div>
+      </div>
+      <div class="cycle-mantra">Om Gam Namaḥ</div>
+    </div>
+    <div class="cycle-row">
+      <div class="cycle-time">12h — 18h</div>
+      <div>
+        <div class="cycle-name">Sthiti — Manutenção</div>
+        <div class="cycle-action">Sustentar, equilibrar, nutrir</div>
+      </div>
+      <div class="cycle-mantra">Om Śānti</div>
+    </div>
+    <div class="cycle-row">
+      <div class="cycle-time">18h — 00h</div>
+      <div>
+        <div class="cycle-name">Laya — Integração</div>
+        <div class="cycle-action">Soltar, renovar, integrar</div>
+      </div>
+      <div class="cycle-mantra">Om Namaḥ Śivāya</div>
+    </div>
+    <div class="cycle-row">
+      <div class="cycle-time">00h — 04h</div>
+      <div>
+        <div class="cycle-name">Repouso</div>
+        <div class="cycle-action">Descanso e restauração profunda</div>
+      </div>
+      <div class="cycle-mantra">Om</div>
+    </div>
+  </div>
+</section>
+
+<!-- HONESTY -->
+<section style="border-top: 0.5px solid var(--card-border);">
+  <div class="honesty reveal">
+    <div class="honesty-title">O que o ŌHM é — e o que não é</div>
+    <p class="honesty-text">
+      O ŌHM não trata doenças. Não promete milagres. Não usa estudos falsos nem porcentagens inventadas.
+      Somos um app de bem-estar sonoro baseado na tradição védica do sânscrito — uma das línguas mais antigas do mundo,
+      com um sistema fonético que há 3.000 anos relaciona sons, qualidades e estados de consciência.<br><br>
+      O que oferecemos é real: som, intenção, beleza e continuidade. Acreditamos que cultivar um ambiente
+      vibracional elevado tem valor real — mesmo que esse valor seja subjetivo, pessoal e intransferível.
+    </p>
+    <div class="honesty-quote">
+      "Você sabe exatamente o que está comprando. Isso é raro. E é o suficiente."
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos" style="border-top: 0.5px solid var(--card-border);">
+  <span class="section-label reveal">Simples e justo</span>
+  <h2 class="section-title reveal">Escolha sua <em>vibração</em></h2>
+
+  <div class="plans-grid reveal">
+    <div class="plan-card">
+      <div class="plan-name">Gratuito</div>
+      <div class="plan-price">R$<sup> </sup>0</div>
+      <div class="plan-period">para sempre</div>
+      <ul class="plan-features">
+        <li>OM puro em 432 Hz</li>
+        <li>Om Shanti — frequência de paz</li>
+        <li>Ciclo védico do momento</li>
+        <li class="locked">Mantra personalizado pelo nome</li>
+        <li class="locked">Número védico</li>
+        <li class="locked">Biblioteca completa</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="btn-ghost" style="display:block; text-align:center; padding:.75rem;">Começar grátis</a>
+    </div>
+
+    <div class="plan-card featured">
+      <div class="plan-badge">Mais popular</div>
+      <div class="plan-name">Pessoal</div>
+      <div class="plan-price">R$<sup> </sup>9<span style="font-size:1.5rem">,90</span></div>
+      <div class="plan-period">por mês</div>
+      <ul class="plan-features">
+        <li>Tudo do gratuito</li>
+        <li>Mantra único pelo seu nome</li>
+        <li>Número védico da data de nascimento</li>
+        <li>5 frequências base</li>
+        <li>Todos os ciclos védicos</li>
+        <li class="locked">Biblioteca completa de mantras</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="btn-primary" style="display:block; text-align:center;">Começar agora</a>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-name">Completo</div>
+      <div class="plan-price">R$<sup> </sup>19<span style="font-size:1.5rem">,90</span></div>
+      <div class="plan-period">por mês · ou R$ 99/ano</div>
+      <ul class="plan-features">
+        <li>Tudo do Pessoal</li>
+        <li>Biblioteca completa de mantras</li>
+        <li>Novos mantras todo mês</li>
+        <li>Modo noturno especial</li>
+        <li>Múltiplas intenções simultâneas</li>
+        <li>Suporte prioritário</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="btn-ghost" style="display:block; text-align:center; padding:.75rem;">Assinar</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="border-top: 0.5px solid var(--card-border);">
+  <span class="section-label reveal">Experiências</span>
+  <h2 class="section-title reveal">O que dizem <em>quem usa</em></h2>
+
+  <div class="testimonials reveal">
+    <div class="testimonial">
+      <div class="testimonial-text">"Uso o ŌHM há três semanas. Não sei explicar o que acontece, mas minha rotina matinal mudou completamente. Acordo com uma sensação diferente."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">MA</div>
+        <div>
+          <div class="author-name">Maria A.</div>
+          <div class="author-role">Terapeuta holística · São Paulo</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-text">"O que me conquistou foi a honestidade. Sem promessas absurdas, sem charlatanismo. Só um app bonito que faz o que diz. Isso é suficiente."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">RC</div>
+        <div>
+          <div class="author-name">Ricardo C.</div>
+          <div class="author-role">Designer · Curitiba</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-text">"Meu mantra — Om La·Na·Da·Ka Namah — virou algo meu. Fico repetindo mentalmente. Esse é o tipo de personalização que faz diferença."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">FL</div>
+        <div>
+          <div class="author-name">Fernanda L.</div>
+          <div class="author-role">Instrutora de yoga · Florianópolis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="border-top: 0.5px solid var(--card-border); text-align:center;">
+  <div class="glow-1" style="position:relative; width:400px; height:200px; margin:0 auto;"></div>
+  <span class="section-label reveal" style="display:block;">Comece agora</span>
+  <h2 class="section-title reveal" style="max-width:500px; margin:0 auto 1.5rem;">
+    Descubra o som<br><em>que é só seu</em>
+  </h2>
+  <p class="reveal" style="font-size:.9rem; color:var(--text-dim); margin-bottom:2.5rem;">
+    Gratuito para começar. Sem cartão de crédito.
+  </p>
+  <div class="reveal">
+    <a href="http://187.77.60.16:4100" class="btn-primary" style="font-size:1rem; padding:1rem 3rem;">
+      Gerar meu mantra agora
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ŌHM</div>
+  <p class="footer-text">
+    Baseado na tradição védica do sânscrito · Bem-estar sonoro personalizado<br>
+    Não tratamos doenças · Não fazemos promessas médicas · Só som, intenção e beleza<br><br>
+    © 2024 ŌHM · Todos os direitos reservados
+  </p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Wave bars animation delay
+document.querySelectorAll('.wave-bar').forEach((bar, i) => {
+  bar.style.animationDelay = (i * 0.1) + 's';
+});
+
+// Demo mantra generator
+const names = ['Carlos','Ana','Marcos','Juliana','Pedro','Fernanda','Lucas','Marina'];
+const phonemes = {
+  a:'expansão',b:'sustentação',c:'criatividade',d:'determinação',
+  e:'expressão',f:'fluidez',g:'crescimento',h:'elevação',i:'intuição',
+  j:'sabedoria',k:'estabilidade',l:'leveza',m:'propósito',n:'renovação',
+  o:'conexão',p:'proteção',r:'movimento',s:'pureza',t:'transformação',
+  u:'unidade',v:'vitalidade'
+};
+
+function generateDemoMantra(name) {
+  const letters = [...new Set(name.toLowerCase().replace(/[^a-z]/g,'').split(''))].slice(0,4);
+  const qualities = letters.map(l => phonemes[l]||'luz').join(' · ');
+  const syllables = letters.map(l => l.toUpperCase()+'a').join('·');
+  return {
+    mantra: `Om ${syllables} Namah`,
+    meaning: `Honro a vibração de ${qualities} em mim`
+  };
+}
+
+let idx = 0;
+setInterval(() => {
+  idx = (idx+1) % names.length;
+  const result = generateDemoMantra(names[idx]);
+  const m = document.getElementById('demo-mantra');
+  const me = document.getElementById('demo-meaning');
+  if(m && me) {
+    m.style.opacity = '0';
+    me.style.opacity = '0';
+    setTimeout(() => {
+      m.textContent = result.mantra;
+      me.textContent = result.meaning;
+      m.style.transition = 'opacity 0.8s';
+      me.style.transition = 'opacity 0.8s';
+      m.style.opacity = '1';
+      me.style.opacity = '1';
+    }, 400);
+  }
+}, 3000);
+</script>
+</body>
+</html>

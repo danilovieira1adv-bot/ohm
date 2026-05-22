@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ŌHM — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #06030f;
+  --ink: #0d0920;
+  --surface: #120e1f;
+  --surface-2: #1a1530;
+  --indigo: #534AB7;
+  --indigo-light: #7B74D4;
+  --indigo-glow: rgba(83,74,183,0.15);
+  --lavender: #c4b5fd;
+  --lavender-dim: rgba(196,181,253,0.5);
+  --lavender-ghost: rgba(196,181,253,0.15);
+  --gold: #E8C547;
+  --gold-dim: rgba(232,197,71,0.6);
+  --text: #e2d9f3;
+  --text-dim: rgba(226,217,243,0.55);
+  --text-ghost: rgba(226,217,243,0.2);
+  --border: rgba(196,181,253,0.1);
+  --border-strong: rgba(196,181,253,0.2);
+  --green: #4ade80;
+  --green-dim: rgba(74,222,128,0.15);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.15);
+  --sidebar-w: 240px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { height:100%; }
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  height: 100%;
+  display: flex;
+  font-size: 14px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--ink);
+  border-right: 0.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  padding: 2rem 1.5rem 1.5rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--lavender);
+}
+
+.logo-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--text-ghost);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+.nav-section {
+  padding: 1.25rem 0.75rem 0.5rem;
+}
+
+.nav-section-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  padding: 0 0.75rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 2px;
+  text-decoration: none;
+  font-size: 0.82rem;
+}
+
+.nav-item:hover {
+  background: var(--lavender-ghost);
+  color: var(--lavender);
+}
+
+.nav-item.active {
+  background: var(--indigo-glow);
+  color: var(--lavender);
+  border: 0.5px solid rgba(83,74,183,0.2);
+}
+
+.nav-icon {
+  width: 18px; height: 18px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.nav-item.active .nav-icon { opacity: 1; }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 1.25rem;
+  border-top: 0.5px solid var(--border);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--indigo-glow);
+  border: 0.5px solid rgba(83,74,183,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--lavender-dim);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.user-plan {
+  font-size: 0.65rem;
+  color: var(--text-ghost);
+}
+
+/* MAIN */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* TOPBAR */
+.topbar {
+  background: rgba(6,3,15,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.topbar-left h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--lavender);
+}
+
+.topbar-left p {
+  font-size: 0.75rem;
+  color: var(--text-ghost);
+  margin-top: 0.1rem;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cycle-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--indigo-glow);
+  border: 0.5px solid rgba(83,74,183,0.25);
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  font-size: 0.72rem;
+  color: var(--lavender-dim);
+}
+
+.cycle-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--indigo-light);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+/* CONTENT */
+.content {
+  padding: 2rem;
+  flex: 1;
+}
+
+/* METRICS ROW */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.metric-card:hover { border-color: var(--border-strong); }
+
+.metric-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--indigo);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.metric-card:hover::after { opacity: 1; }
+
+.metric-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metric-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--lavender);
+  line-height: 1;
+}
+
+.metric-change {
+  font-size: 0.72rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metric-change.up { color: var(--green); }
+.metric-change.down { color: var(--red); }
+
+.metric-sub {
+  font-size: 0.72rem;
+  color: var(--text-ghost);
+  margin-top: 0.3rem;
+}
+
+/* GRID 2 COL */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.card-action {
+  font-size: 0.7rem;
+  color: var(--indigo-light);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.card-action:hover { color: var(--lavender); }
+
+.card-body { padding: 1.5rem; }
+
+/* CHART BAR */
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 120px;
+}
+
+.chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  background: var(--indigo);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  cursor: default;
+  min-height: 4px;
+}
+
+.chart-bar:hover { opacity: 1; transform: scaleY(1.02); transform-origin: bottom; }
+
+.chart-bar.gold { background: var(--gold); }
+
+.chart-label {
+  font-size: 0.6rem;
+  color: var(--text-ghost);
+  text-align: center;
+}
+
+/* INTENTIONS DONUT */
+.intentions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.intention-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.intention-label {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.intention-bar-wrap {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.intention-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--indigo);
+}
+
+.intention-pct {
+  font-size: 0.72rem;
+  color: var(--text-ghost);
+  width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* USER TABLE */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 0.5px solid var(--border);
+  font-weight: 400;
+}
+
+.table td {
+  padding: 0.85rem 1rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  border-bottom: 0.5px solid rgba(196,181,253,0.05);
+  vertical-align: middle;
+}
+
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: rgba(196,181,253,0.02); }
+
+.user-row-name {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.user-mini-avatar {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--indigo-glow);
+  border: 0.5px solid rgba(83,74,183,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  color: var(--lavender-dim);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.65rem;
+  font-weight: 400;
+}
+
+.badge.free {
+  background: rgba(196,181,253,0.08);
+  color: var(--lavender-dim);
+  border: 0.5px solid rgba(196,181,253,0.15);
+}
+
+.badge.personal {
+  background: var(--indigo-glow);
+  color: var(--indigo-light);
+  border: 0.5px solid rgba(83,74,183,0.25);
+}
+
+.badge.complete {
+  background: rgba(232,197,71,0.1);
+  color: var(--gold-dim);
+  border: 0.5px solid rgba(232,197,71,0.2);
+}
+
+/* MANTRA CARD */
+.my-mantra {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.my-mantra::before {
+  content: 'ॐ';
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10rem;
+  color: var(--lavender);
+  opacity: 0.04;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
+.mantra-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--lavender);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.mantra-meaning-small {
+  font-size: 0.75rem;
+  color: var(--text-ghost);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.wave-mini {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  justify-content: center;
+  height: 28px;
+  margin-bottom: 1.25rem;
+}
+
+.wbar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--indigo);
+  opacity: 0.5;
+  transition: height 0.4s ease;
+}
+
+.wbar.playing {
+  background: var(--lavender);
+  opacity: 0.8;
+}
+
+.play-btn {
+  background: var(--indigo);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 0.6rem 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.play-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* VEDIC NUMBER */
+.vedic-num {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--indigo-glow);
+  border: 0.5px solid rgba(83,74,183,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--lavender);
+  margin: 0 auto 0.75rem;
+}
+
+/* FREQ PILLS */
+.freq-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.freq-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(83,74,183,0.1);
+  border: 0.5px solid rgba(83,74,183,0.2);
+  border-radius: 100px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.72rem;
+  color: var(--lavender-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.freq-pill:hover, .freq-pill.active {
+  background: var(--indigo-glow);
+  border-color: rgba(83,74,183,0.4);
+  color: var(--lavender);
+}
+
+.freq-pill-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--indigo-light);
+}
+
+/* ACTIVITY */
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 0.5px solid rgba(196,181,253,0.05);
+}
+
+.activity-item:last-child { border-bottom: none; }
+
+.activity-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--indigo-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.activity-text {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.activity-text strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.activity-time {
+  font-size: 0.65rem;
+  color: var(--text-ghost);
+  margin-top: 0.2rem;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--indigo); border-radius: 2px; opacity: 0.5; }
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-text">ŌHM</div>
+    <div class="logo-sub">Painel do usuário</div>
+  </div>
+
+  <div class="nav-section">
+    <span class="nav-section-label">Principal</span>
+    <a class="nav-item active" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+      Visão geral
+    </a>
+    <a class="nav-item" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </svg>
+      Meu mantra
+    </a>
+    <a class="nav-item" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 12a9 9 0 1018 0 9 9 0 00-18 0"/><path d="M12 8v4l3 3"/>
+      </svg>
+      Ciclos védicos
+    </a>
+    <a class="nav-item" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+      Frequências
+    </a>
+  </div>
+
+  <div class="nav-section">
+    <span class="nav-section-label">Conta</span>
+    <a class="nav-item" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      Perfil
+    </a>
+    <a class="nav-item" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>
+      </svg>
+      Plano
+    </a>
+    <a class="nav-item" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2m-3.22-6.78-1.42 1.42M6.64 17.36l-1.42 1.42m0-12.02 1.42 1.42M17.36 17.36l1.42 1.42"/>
+      </svg>
+      Configurações
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">MR</div>
+      <div>
+        <div class="user-name">Marcos R.</div>
+        <div class="user-plan">Plano Pessoal</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1>Boa tarde, Marcos</h1>
+      <p>Quinta-feira · Seu campo está ativo</p>
+    </div>
+    <div class="topbar-right">
+      <div class="cycle-badge">
+        <span class="cycle-dot"></span>
+        Sthiti — Manutenção
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- METRICS -->
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+          Dias ativos
+        </div>
+        <div class="metric-value">23</div>
+        <div class="metric-sub">desde o cadastro</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+          Horas emitidas
+        </div>
+        <div class="metric-value">312</div>
+        <div class="metric-change up">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6"/>
+          </svg>
+          +18h esta semana
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Frequência atual
+        </div>
+        <div class="metric-value">528</div>
+        <div class="metric-sub">Hz · Transformação</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+          </svg>
+          Próximo ciclo
+        </div>
+        <div class="metric-value" style="font-size:1.5rem; padding-top:.4rem;">18h00</div>
+        <div class="metric-sub">Laya — Integração</div>
+      </div>
+    </div>
+
+    <!-- ROW: MANTRA + VEDIC -->
+    <div class="grid-2">
+
+      <!-- MEU MANTRA -->
+      <div class="my-mantra">
+        <div class="card-title" style="font-size:.65rem; letter-spacing:.15em; text-transform:uppercase; color:var(--text-ghost); margin-bottom:1.25rem;">Seu mantra pessoal</div>
+        <div class="mantra-display">Om Ma·Ra·Ka·Sa Namah</div>
+        <div class="mantra-meaning-small">Honro a vibração de propósito · movimento<br>estabilidade · pureza em mim</div>
+
+        <div class="wave-mini" id="wave">
+          <div class="wbar" style="height:8px"></div>
+          <div class="wbar" style="height:16px"></div>
+          <div class="wbar" style="height:24px"></div>
+          <div class="wbar" style="height:20px"></div>
+          <div class="wbar" style="height:28px"></div>
+          <div class="wbar" style="height:14px"></div>
+          <div class="wbar" style="height:22px"></div>
+          <div class="wbar" style="height:18px"></div>
+          <div class="wbar" style="height:26px"></div>
+          <div class="wbar" style="height:12px"></div>
+          <div class="wbar" style="height:20px"></div>
+          <div class="wbar" style="height:30px"></div>
+          <div class="wbar" style="height:16px"></div>
+        </div>
+
+        <button class="play-btn" id="playBtn" onclick="togglePlay()">Ativar vibração</button>
+      </div>
+
+      <!-- NÚMERO VÉDICO + FREQUÊNCIAS -->
+      <div style="display:flex; flex-direction:column; gap:1rem;">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Número védico</span>
+          </div>
+          <div class="card-body" style="text-align:center; padding:1.5rem;">
+            <div class="vedic-num">5</div>
+            <div style="font-size:.82rem; font-weight:500; color:var(--lavender); margin-bottom:.25rem;">Mercúrio</div>
+            <div style="font-size:.75rem; color:var(--text-dim);">comunicação · adaptabilidade · inteligência</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Frequências</span>
+            <span class="card-action">Trocar</span>
+          </div>
+          <div class="card-body">
+            <div class="freq-pills">
+              <div class="freq-pill active"><span class="freq-pill-dot"></span>528 Hz</div>
+              <div class="freq-pill"><span class="freq-pill-dot"></span>432 Hz</div>
+              <div class="freq-pill"><span class="freq-pill-dot"></span>396 Hz</div>
+              <div class="freq-pill"><span class="freq-pill-dot"></span>174 Hz</div>
+              <div class="freq-pill"><span class="freq-pill-dot"></span>40 Hz</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW: CHART + INTENTIONS -->
+    <div class="grid-2">
+
+      <!-- ATIVIDADE SEMANAL -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Horas emitidas — semana</span>
+        </div>
+        <div class="card-body">
+          <div class="chart-bars">
+            <div class="chart-col">
+              <div class="chart-bar" style="height:40px"></div>
+              <div class="chart-label">Seg</div>
+            </div>
+            <div class="chart-col">
+              <div class="chart-bar" style="height:65px"></div>
+              <div class="chart-label">Ter</div>
+            </div>
+            <div class="chart-col">
+              <div class="chart-bar" style="height:55px"></div>
+              <div class="chart-label">Qua</div>
+            </div>
+            <div class="chart-col">
+              <div class="chart-bar gold" style="height:90px"></div>
+              <div class="chart-label">Qui</div>
+            </div>
+            <div class="chart-col">
+              <div class="chart-bar" style="height:70px; opacity:.3"></div>
+              <div class="chart-label">Sex</div>
+            </div>
+            <div class="chart-col">
+              <div class="chart-bar" style="height:20px; opacity:.3"></div>
+              <div class="chart-label">Sáb</div>
+            </div>
+            <div class="chart-col">
+              <div class="chart-bar" style="height:10px; opacity:.3"></div>
+              <div class="chart-label">Dom</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTENÇÕES -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Distribuição de intenções</span>
+          <span class="card-action">Ver tudo</span>
+        </div>
+        <div class="card-body">
+          <div class="intentions-list">
+            <div class="intention-row">
+              <div class="intention-label">Prosperidade</div>
+              <div class="intention-bar-wrap">
+                <div class="intention-bar-fill" style="width:68%; background:var(--gold)"></div>
+              </div>
+              <div class="intention-pct">68%</div>
+            </div>
+            <div class="intention-row">
+              <div class="intention-label">Paz interior</div>
+              <div class="intention-bar-wrap">
+                <div class="intention-bar-fill" style="width:52%"></div>
+              </div>
+              <div class="intention-pct">52%</div>
+            </div>
+            <div class="intention-row">
+              <div class="intention-label">Proteção</div>
+              <div class="intention-bar-wrap">
+                <div class="intention-bar-fill" style="width:38%"></div>
+              </div>
+              <div class="intention-pct">38%</div>
+            </div>
+            <div class="intention-row">
+              <div class="intention-label">Foco</div>
+              <div class="intention-bar-wrap">
+                <div class="intention-bar-fill" style="width:29%"></div>
+              </div>
+              <div class="intention-pct">29%</div>
+            </div>
+            <div class="intention-row">
+              <div class="intention-label">Amor</div>
+              <div class="intention-bar-wrap">
+                <div class="intention-bar-fill" style="width:21%; background:var(--lavender)"></div>
+              </div>
+              <div class="intention-pct">21%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW: USERS + ACTIVITY -->
+    <div class="grid-3">
+
+      <!-- ÚLTIMOS USUÁRIOS (admin view) -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Usuários recentes</span>
+          <span class="card-action">Ver todos</span>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Usuário</th>
+              <th>Mantra</th>
+              <th>Intenção</th>
+              <th>Plano</th>
+              <th>Cadastro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="user-row-name"><div class="user-mini-avatar">MA</div>Maria A.</div></td>
+              <td style="color:var(--lavender); font-size:.72rem; font-style:italic;">Om Ma·Ra·Ia Namah</td>
+              <td>Prosperidade</td>
+              <td><span class="badge personal">Pessoal</span></td>
+              <td>hoje</td>
+            </tr>
+            <tr>
+              <td><div class="user-row-name"><div class="user-mini-avatar">RC</div>Ricardo C.</div></td>
+              <td style="color:var(--lavender); font-size:.72rem; font-style:italic;">Om Ra·Ic·Da Namah</td>
+              <td>Foco</td>
+              <td><span class="badge complete">Completo</span></td>
+              <td>ontem</td>
+            </tr>
+            <tr>
+              <td><div class="user-row-name"><div class="user-mini-avatar">FL</div>Fernanda L.</div></td>
+              <td style="color:var(--lavender); font-size:.72rem; font-style:italic;">Om Fe·Na·Da·La Namah</td>
+              <td>Amor</td>
+              <td><span class="badge personal">Pessoal</span></td>
+              <td>ontem</td>
+            </tr>
+            <tr>
+              <td><div class="user-row-name"><div class="user-mini-avatar">JP</div>João P.</div></td>
+              <td style="color:var(--lavender); font-size:.72rem; font-style:italic;">Om Ja·Oa Namah</td>
+              <td>Proteção</td>
+              <td><span class="badge free">Grátis</span></td>
+              <td>2 dias</td>
+            </tr>
+            <tr>
+              <td><div class="user-row-name"><div class="user-mini-avatar">AS</div>Ana S.</div></td>
+              <td style="color:var(--lavender); font-size:.72rem; font-style:italic;">Om Aa·Na·Sa Namah</td>
+              <td>Paz</td>
+              <td><span class="badge personal">Pessoal</span></td>
+              <td>3 dias</td>
+            </tr>
+            <tr>
+              <td><div class="user-row-name"><div class="user-mini-avatar">LM</div>Lucas M.</div></td>
+              <td style="color:var(--lavender); font-size:.72rem; font-style:italic;">Om La·Ua·Ka Namah</td>
+              <td>Foco</td>
+              <td><span class="badge free">Grátis</span></td>
+              <td>5 dias</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ATIVIDADE RECENTE -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Atividade recente</span>
+        </div>
+        <div class="card-body" style="padding-top:.5rem;">
+          <div class="activity-item">
+            <div class="activity-icon">ॐ</div>
+            <div>
+              <div class="activity-text"><strong>Vibração ativada</strong> — 528 Hz em loop</div>
+              <div class="activity-time">agora mesmo</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">↻</div>
+            <div>
+              <div class="activity-text">Ciclo mudou para <strong>Sthiti</strong></div>
+              <div class="activity-time">há 2 horas</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">★</div>
+            <div>
+              <div class="activity-text"><strong>Maria A.</strong> cadastrou-se no plano Pessoal</div>
+              <div class="activity-time">há 3 horas</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">↑</div>
+            <div>
+              <div class="activity-text"><strong>Ricardo C.</strong> fez upgrade para Completo</div>
+              <div class="activity-time">ontem, 19h22</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">ॐ</div>
+            <div>
+              <div class="activity-text">Ciclo <strong>Brahma Muhurta</strong> iniciado</div>
+              <div class="activity-time">ontem, 04h00</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">★</div>
+            <div>
+              <div class="activity-text"><strong>Fernanda L.</strong> cadastrou-se</div>
+              <div class="activity-time">2 dias atrás</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+let playing = false;
+let audioCtx = null;
+
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('playBtn');
+  const bars = document.querySelectorAll('.wbar');
+
+  if(playing) {
+    btn.textContent = 'Pausar vibração';
+    btn.style.background = 'rgba(83,74,183,0.4)';
+    bars.forEach(b => b.classList.add('playing'));
+    try {
+      audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.frequency.value = 528; osc.type = 'sine';
+      gain.gain.setValueAtTime(0, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 1.5);
+      osc.start();
+    } catch(e) {}
+  } else {
+    btn.textContent = 'Ativar vibração';
+    btn.style.background = '';
+    bars.forEach(b => b.classList.remove('playing'));
+    if(audioCtx) { audioCtx.close(); audioCtx = null; }
+  }
+}
+
+// Nav interactions
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Freq pill interactions
+document.querySelectorAll('.freq-pill').forEach(pill => {
+  pill.addEventListener('click', function() {
+    document.querySelectorAll('.freq-pill').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Live clock for cycle
+function updateCycle() {
+  const h = new Date().getHours();
+  let name, next;
+  if(h>=4&&h<6)  { name='Brahma Muhurta'; next='06h00 — Sarga'; }
+  else if(h>=6&&h<12) { name='Sarga — Criação'; next='12h00 — Sthiti'; }
+  else if(h>=12&&h<18){ name='Sthiti — Manutenção'; next='18h00 — Laya'; }
+  else if(h>=18&&h<24){ name='Laya — Integração'; next='00h00 — Repouso'; }
+  else { name='Repouso'; next='04h00 — Brahma Muhurta'; }
+
+  const badge = document.querySelector('.cycle-badge');
+  if(badge) badge.innerHTML = `<span class="cycle-dot"></span>${name}`;
+}
+
+updateCycle();
+setInterval(updateCycle, 60000);
+</script>
+</body>
+</html>
