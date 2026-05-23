@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import StreamPlayer from './StreamPlayer.jsx'
 
 const API = 'http://187.77.60.16:4101/api'
 
@@ -38,6 +37,15 @@ const CYCLES = [
   { start:18, end:24, name:'Laya — Integração',    action:'Soltar e renovar',       mantra:'Om Namah Shivaya',freq:396 },
   { start:0,  end:4,  name:'Repouso',              action:'Descanso profundo',      mantra:'Om puro',        freq:174 },
 ]
+
+const SEQUENCES = {
+  paz:          [396, 528, 417, 963],
+  prosperidade: [528, 639, 741, 852],
+  protecao:     [396, 417, 528, 741],
+  foco:         [417, 528, 741, 963],
+  amor:         [528, 639, 852, 963],
+  transformacao:[396, 417, 639, 741],
+}
 
 const VEDIC = {
   1:{planet:'Sol',quality:'liderança'},    2:{planet:'Lua',quality:'intuição'},
@@ -611,15 +619,16 @@ function PlayerPanel({ profile, cycle }) {
                   <div><div className="ct-label">Emissão em nuvem 24/7</div><div className="ct-sub">Servidor emite independente do aparelho</div></div>
                   <Toggle on={cloudOn} />
                 </div>
-                <div className="cloud-toggle" onClick={() => setCloudDev(!cloudDev)}>
+                <div className="cloud-toggle" onClick={() => { setCloudDev(v => !v) }}>
                   <div><div className="ct-label">Emissão simultânea no aparelho</div><div className="ct-sub">Toca também neste dispositivo</div></div>
-                  <Toggle on={cloudDev} />
+                  <Toggle on={cloudDev} onClick={e => { e.stopPropagation(); setCloudDev(v => !v) }} />
                 </div>
-                {cloudDev && (
-                  <button className={`play-btn${playing ? ' on' : ''}`} style={{ marginTop: '.5rem' }} onClick={togglePlay}>
-                    {playing ? 'Pausar no aparelho' : 'Ativar no aparelho também'}
-                  </button>
-                )}
+                <button
+                  className={`play-btn${playing ? ' on' : ''}`}
+                  style={{ marginTop: '.5rem', opacity: cloudDev ? 1 : 0.35 }}
+                  onClick={() => { if (!cloudDev) { setCloudDev(true); } togglePlay(); }}>
+                  {playing ? 'Pausar no aparelho' : 'Ativar no aparelho também'}
+                </button>
               </>
             )}
           </div>
@@ -769,6 +778,95 @@ function Overview({ profile, cycle, setPage }) {
           </div>
         </div>
       </div>
+
+      {/* EXPLICAÇÃO COMPLETA — COMO CHEGAMOS AO SEU NÚMERO E FREQUÊNCIA */}
+      <div className="card" style={{ marginBottom: '1rem' }}>
+        <div className="card-hd">
+          <span className="card-hd-title">Como chegamos ao seu número e frequência</span>
+          <span className="card-hd-action" style={{ fontSize: '.65rem', color: 'var(--goldd)' }}>Total transparência</span>
+        </div>
+        <div className="card-bd">
+
+          {/* STEP 1 — NOME */}
+          <div style={{ display:'grid', gridTemplateColumns:'28px 1fr', gap:'.85rem', alignItems:'flex-start', paddingBottom:'1.1rem', borderBottom:'.5px solid rgba(196,181,253,.06)', marginBottom:'1.1rem' }}>
+            <div style={{ width:28,height:28,borderRadius:'50%',background:'var(--iglow)',border:'.5px solid rgba(83,74,183,.25)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'.65rem',color:'var(--indigo2)',fontWeight:500,flexShrink:0 }}>1</div>
+            <div>
+              <div style={{ fontSize:'.78rem',fontWeight:400,color:'var(--lav)',marginBottom:'.3rem' }}>Fonemas sânscritos do nome</div>
+              <div style={{ fontSize:'.72rem',color:'var(--textd)',lineHeight:1.7,marginBottom:'.5rem' }}>
+                O sânscrito possui 50 fonemas classificados nos <em>Shikshā</em> — tratados fonéticos védicos com ~2.500 anos. Cada letra do seu nome é mapeada para um fonema e sua qualidade arquetípica associada.
+              </div>
+              <div style={{ background:'var(--iglow)',border:'.5px solid rgba(83,74,183,.18)',borderRadius:9,padding:'.6rem .9rem',fontSize:'.72rem',color:'var(--lav)',fontStyle:'italic',lineHeight:1.6 }}>
+                {profile.name} → {generateMantra(profile.name).qualities}<br/>
+                Mantra gerado: <strong style={{fontFamily:"'Cormorant Garamond',serif",letterSpacing:'.06em'}}>{generateMantra(profile.name).mantra}</strong>
+              </div>
+            </div>
+          </div>
+
+          {/* STEP 2 — DATA */}
+          <div style={{ display:'grid', gridTemplateColumns:'28px 1fr', gap:'.85rem', alignItems:'flex-start', paddingBottom:'1.1rem', borderBottom:'.5px solid rgba(196,181,253,.06)', marginBottom:'1.1rem' }}>
+            <div style={{ width:28,height:28,borderRadius:'50%',background:'var(--iglow)',border:'.5px solid rgba(83,74,183,.25)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'.65rem',color:'var(--indigo2)',fontWeight:500,flexShrink:0 }}>2</div>
+            <div>
+              <div style={{ fontSize:'.78rem',fontWeight:400,color:'var(--lav)',marginBottom:'.3rem' }}>Número védico — Jyotish (astrologia védica)</div>
+              <div style={{ fontSize:'.72rem',color:'var(--textd)',lineHeight:1.7,marginBottom:'.5rem' }}>
+                Na tradição Jyotish, a soma reduzida dos dígitos da data de nascimento revela o <em>Graha</em> (planeta regente) que domina a vibração natal da pessoa. Cada planeta tem uma frequência Solfeggio associada.
+              </div>
+              <div style={{ background:'var(--iglow)',border:'.5px solid rgba(83,74,183,.18)',borderRadius:9,padding:'.6rem .9rem',fontSize:'.72rem',color:'var(--lav)',fontStyle:'italic',lineHeight:1.6 }}>
+                {profile.birthdate
+                  ? `${profile.birthdate} → soma dos dígitos → reduz para ${vedicNum(profile.birthdate).number} → ${vedicNum(profile.birthdate).planet} → ${vedicNum(profile.birthdate).quality}`
+                  : 'Data de nascimento não informada'}
+              </div>
+            </div>
+          </div>
+
+          {/* STEP 3 — FREQUÊNCIA */}
+          <div style={{ display:'grid', gridTemplateColumns:'28px 1fr', gap:'.85rem', alignItems:'flex-start', paddingBottom:'1.1rem', borderBottom:'.5px solid rgba(196,181,253,.06)', marginBottom:'1.1rem' }}>
+            <div style={{ width:28,height:28,borderRadius:'50%',background:'var(--iglow)',border:'.5px solid rgba(83,74,183,.25)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'.65rem',color:'var(--indigo2)',fontWeight:500,flexShrink:0 }}>3</div>
+            <div>
+              <div style={{ fontSize:'.78rem',fontWeight:400,color:'var(--lav)',marginBottom:'.3rem' }}>As 7 frequências Solfeggio — origem medieval</div>
+              <div style={{ fontSize:'.72rem',color:'var(--textd)',lineHeight:1.7,marginBottom:'.5rem' }}>
+                Sistema de 7 tons documentado pelo Dr. Joseph Puleo nos anos 1990 a partir de manuscritos do canto gregoriano medieval (<em>Ut queant laxis</em>, séc. VIII). Cada frequência corresponde a uma qualidade específica. Você recebe 4 das 7, selecionadas pela sua intenção.
+              </div>
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'.4rem' }}>
+                {(SEQUENCES[profile.intention] || SEQUENCES.paz).map((hz, i) => (
+                  <div key={i} style={{ background:'rgba(83,74,183,.1)',border:'.5px solid rgba(83,74,183,.2)',borderRadius:8,padding:'.5rem',textAlign:'center' }}>
+                    <div style={{ fontFamily:"'Cormorant Garamond',serif",fontSize:'1.15rem',color:'var(--gold)',opacity:.8,lineHeight:1 }}>{hz}</div>
+                    <div style={{ fontSize:'.6rem',color:'var(--lav)',marginTop:'.2rem' }}>
+                      {hz===396?'Liberação':hz===417?'Mudança':hz===528?'Transformação':hz===639?'Conexão':hz===741?'Expressão':hz===852?'Ordem':'Consciência'}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* STEP 4 — HERMETISMO */}
+          <div style={{ display:'grid', gridTemplateColumns:'28px 1fr', gap:'.85rem', alignItems:'flex-start', paddingBottom:'1.1rem', borderBottom:'.5px solid rgba(196,181,253,.06)', marginBottom:'1.1rem' }}>
+            <div style={{ width:28,height:28,borderRadius:'50%',background:'var(--iglow)',border:'.5px solid rgba(83,74,183,.25)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'.65rem',color:'var(--indigo2)',fontWeight:500,flexShrink:0 }}>4</div>
+            <div>
+              <div style={{ fontSize:'.78rem',fontWeight:400,color:'var(--lav)',marginBottom:'.3rem' }}>Planeta das Horas — Hermetismo clássico</div>
+              <div style={{ fontSize:'.72rem',color:'var(--textd)',lineHeight:1.7 }}>
+                O <em>Corpus Hermeticum</em> (séc. II d.C.) estabelece os Horários Planetários — ciclos de 24h onde cada hora é regida por um planeta. A hora do seu nascimento determina o Planeta das Horas, que define o ritmo de troca entre as frequências da sua sequência.
+              </div>
+            </div>
+          </div>
+
+          {/* STEP 5 — ZOROASTRISMO */}
+          <div style={{ display:'grid', gridTemplateColumns:'28px 1fr', gap:'.85rem', alignItems:'flex-start' }}>
+            <div style={{ width:28,height:28,borderRadius:'50%',background:'var(--iglow)',border:'.5px solid rgba(83,74,183,.25)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'.65rem',color:'var(--indigo2)',fontWeight:500,flexShrink:0 }}>5</div>
+            <div>
+              <div style={{ fontSize:'.78rem',fontWeight:400,color:'var(--lav)',marginBottom:'.3rem' }}>Yazata zoroastrista — calendário do Avesta</div>
+              <div style={{ fontSize:'.72rem',color:'var(--textd)',lineHeight:1.7,marginBottom:'.5rem' }}>
+                O <em>Avesta</em> — texto sagrado zoroastrista (~1200 a.C.) — atribui um Yazata (entidade divina com qualidades específicas) a cada dia do ano no calendário Fasli. O Yazata do seu dia de nascimento define a intenção arquetípica mais profunda do seu mantra.
+              </div>
+              <div style={{ background:'rgba(232,197,71,.06)',border:'.5px solid rgba(232,197,71,.15)',borderRadius:9,padding:'.6rem .9rem',fontSize:'.72rem',color:'rgba(232,197,71,.7)',fontStyle:'italic',lineHeight:1.6 }}>
+                Toda esta lógica é pública, auditável e verificável. Nenhum elemento é aleatório ou inventado.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </>
   )
 }
@@ -928,7 +1026,7 @@ function Dashboard({ profile, onLogout }) {
 
         <div className="content">
           {page === 'overview' && <Overview profile={profile} cycle={cycle} setPage={setPage} />}
-          {page === 'player' && <StreamPlayer profile={profile} mantraData={generateMantra(profile.name)} />}
+          {page === 'player' && <PlayerPanel profile={profile} cycle={cycle} />}
           {page === 'cycles' && (
             <div style={{ maxWidth: 600 }}>
               <div className="card">
