@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ŌHM — Vibrações Sagradas Personalizadas | Streaming 24/7</title>
+<meta name="description" content="O único sistema de streaming vibracional personalizado do Brasil. Baseado nas 7 frequências Solfeggio, sânscrito védico e tradições milenares. Para você, seu espaço ou negócio."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#04010c; --ink:#080514; --surface:#0f0b1c; --surface2:#161228;
+  --indigo:#534AB7; --indigo2:#7B74D4; --iglow:rgba(83,74,183,.14);
+  --lav:#c4b5fd; --lavd:rgba(196,181,253,.5); --lavg:rgba(196,181,253,.1);
+  --gold:#E8C547; --goldd:rgba(232,197,71,.6); --golddim:rgba(232,197,71,.15);
+  --text:#e2d9f3; --textd:rgba(226,217,243,.6); --textg:rgba(226,217,243,.2);
+  --border:rgba(196,181,253,.08); --border2:rgba(196,181,253,.16);
+  --green:#4ade80; --greend:rgba(74,222,128,.15);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.5}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--indigo);border-radius:2px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(4,1,12,.8);backdrop-filter:blur(24px);border-bottom:.5px solid var(--border)}
+.nlogo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;letter-spacing:.25em;color:var(--lav)}
+.nlinks{display:flex;align-items:center;gap:2.25rem;list-style:none}
+.nlinks a{color:var(--textd);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.nlinks a:hover{color:var(--lav)}
+.ncta{border:.5px solid rgba(196,181,253,.3) !important;color:var(--lav) !important;padding:.42rem 1.25rem;border-radius:100px;transition:all .3s !important}
+.ncta:hover{background:var(--iglow) !important;border-color:var(--lavd) !important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:8rem 2rem 5rem;text-align:center;overflow:hidden}
+.hero-mesh{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(83,74,183,.1) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 70%,rgba(232,197,71,.05) 0%,transparent 60%),radial-gradient(ellipse 35% 35% at 20% 30%,rgba(196,181,253,.05) 0%,transparent 60%);pointer-events:none}
+.om-hero{position:absolute;font-family:'Cormorant Garamond',serif;font-size:clamp(10rem,22vw,18rem);color:var(--lav);opacity:.055;top:50%;left:50%;transform:translate(-50%,-52%);pointer-events:none;animation:breathe 12s ease-in-out infinite;line-height:1;letter-spacing:-.02em}
+@keyframes breathe{0%,100%{opacity:.04;transform:translate(-50%,-52%) scale(1)}50%{opacity:.09;transform:translate(-50%,-52%) scale(1.03)}}
+.hero-live{display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,222,128,.08);border:.5px solid rgba(74,222,128,.2);border-radius:100px;padding:.35rem 1rem;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(74,222,128,.8);margin-bottom:1.75rem;position:relative;z-index:2;animation:fadeUp 1s ease .1s both}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero-eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--goldd);margin-bottom:1.25rem;position:relative;z-index:2;animation:fadeUp 1s ease .2s both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,11vw,8.5rem);font-weight:300;letter-spacing:.12em;color:var(--lav);line-height:.95;position:relative;z-index:2;animation:fadeUp 1s ease .35s both}
+.hero-title span{display:block;font-size:clamp(1.2rem,3vw,2rem);font-style:italic;color:var(--textd);letter-spacing:.04em;margin-top:.5rem;font-weight:300}
+.hero-desc{max-width:580px;font-size:.95rem;color:var(--textd);line-height:1.9;margin-top:1.75rem;position:relative;z-index:2;animation:fadeUp 1s ease .55s both}
+.hero-acts{display:flex;gap:1rem;margin-top:2.5rem;position:relative;z-index:2;animation:fadeUp 1s ease .7s both;flex-wrap:wrap;justify-content:center}
+.btn-p{background:var(--indigo);color:white;border:none;padding:.92rem 2.5rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:400;letter-spacing:.03em;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(83,74,183,.45)}
+.btn-g{background:transparent;color:var(--lavd);border:.5px solid var(--border2);padding:.88rem 2.5rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.88rem;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-g:hover{border-color:var(--lavd);color:var(--lav)}
+.btn-gold{background:var(--gold);color:#1a1000;border:none;padding:.92rem 2.5rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(232,197,71,.35)}
+
+/* FREQ VISUALIZER */
+.freq-vis{display:flex;align-items:center;justify-content:center;gap:5px;margin:3rem 0 0;position:relative;z-index:2;animation:fadeUp 1s ease .85s both;height:48px}
+.fbar{width:3px;border-radius:2px;background:var(--indigo);opacity:.4;animation:fwave 2.5s ease-in-out infinite}
+@keyframes fwave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(2.8)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* TRUST */
+.trust{background:var(--ink);border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:1.1rem 4rem;display:flex;align-items:center;justify-content:center;gap:2.75rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.5rem;font-size:.68rem;color:var(--textd);letter-spacing:.06em}
+.trust-dot{width:3px;height:3px;border-radius:50%;background:var(--indigo2);flex-shrink:0}
+
+/* DIVIDER */
+.divider{height:.5px;background:var(--border);max-width:1100px;margin:0 auto}
+
+/* SECTIONS */
+.sec{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+.sec-sm{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.sec-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--goldd);margin-bottom:.65rem;display:block}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:300;color:var(--lav);line-height:1.15;margin-bottom:1.1rem}
+.sec-title em{font-style:italic;color:var(--textd)}
+.sec-body{font-size:.9rem;color:var(--textd);line-height:1.9;max-width:580px}
+
+/* THE 7 FREQUENCIES — HERO SECTION */
+.freq7-intro{text-align:center;margin-bottom:3.5rem}
+.freq7-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.75rem;margin-bottom:2rem}
+.freq7-card{background:var(--surface);border:.5px solid var(--border);border-radius:16px;padding:1.5rem 1rem;text-align:center;position:relative;overflow:hidden;transition:all .35s;cursor:default}
+.freq7-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;transition:opacity .3s;opacity:0}
+.freq7-card:hover{background:var(--surface2);border-color:var(--border2);transform:translateY(-4px)}
+.freq7-card:hover::before{opacity:1}
+.freq7-hz{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold);opacity:.8;line-height:1;margin-bottom:.3rem}
+.freq7-name{font-size:.7rem;font-weight:500;color:var(--lav);margin-bottom:.5rem;letter-spacing:.03em}
+.freq7-intent{font-size:.62rem;color:var(--textd);line-height:1.55}
+.freq7-origin{font-size:.58rem;color:var(--textg);margin-top:.5rem;font-style:italic}
+.freq7-bar{height:2px;border-radius:1px;margin-bottom:.85rem;opacity:.6}
+
+/* SOLFEGGIO SPECTRUM */
+.solfeggio-spectrum{background:var(--surface);border:.5px solid var(--border);border-radius:24px;padding:2.5rem;margin-top:2rem;position:relative;overflow:hidden}
+.solfeggio-spectrum::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#396,#417hz,#528hz,#639hz,#741hz,#852hz,#963hz);background:linear-gradient(90deg,rgba(74,222,128,.6),rgba(100,180,255,.6),rgba(196,181,253,.8),rgba(255,180,100,.6),rgba(232,197,71,.8),rgba(255,120,120,.6),rgba(180,100,255,.8))}
+.spectrum-title{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--textg);margin-bottom:1.5rem;text-align:center}
+.spectrum-bars{display:flex;align-items:flex-end;gap:8px;height:80px;justify-content:center}
+.spec-bar{border-radius:3px 3px 0 0;opacity:.7;transition:all .3s;cursor:pointer;position:relative}
+.spec-bar:hover{opacity:1;transform:scaleY(1.1);transform-origin:bottom}
+.spec-label{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:.55rem;color:var(--textg);white-space:nowrap}
+
+/* HOW PERSONALIZATION WORKS */
+.persona-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:20px;overflow:hidden;margin-top:3rem}
+.pf-block{background:var(--surface);padding:2.25rem 1.75rem;position:relative;transition:background .3s}
+.pf-block:hover{background:var(--surface2)}
+.pf-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--indigo);opacity:.35;line-height:1;margin-bottom:1.25rem}
+.pf-title{font-size:.78rem;font-weight:500;color:var(--lav);margin-bottom:.5rem;letter-spacing:.03em}
+.pf-desc{font-size:.78rem;color:var(--textd);line-height:1.7}
+.pf-example{margin-top:.85rem;background:var(--iglow);border:.5px solid rgba(83,74,183,.18);border-radius:9px;padding:.65rem .9rem;font-size:.7rem;color:var(--lav);font-style:italic;line-height:1.6}
+.pf-arrow{position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:2px;height:40px;background:var(--indigo);opacity:.3;z-index:1}
+
+/* DEMO CALCULATOR */
+.demo-wrap{background:var(--surface);border:.5px solid var(--border);border-radius:24px;padding:3rem;margin-top:3rem;position:relative;overflow:hidden}
+.demo-wrap::after{content:'ॐ';position:absolute;font-family:'Cormorant Garamond',serif;font-size:18rem;color:var(--lav);opacity:.025;top:50%;right:-2rem;transform:translateY(-50%);pointer-events:none;line-height:1}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.75rem;margin-bottom:1.25rem}
+.demo-input{background:rgba(196,181,253,.06);border:.5px solid var(--border2);border-radius:10px;padding:.75rem 1rem;color:var(--text);font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;width:100%;transition:border .2s}
+.demo-input:focus{border-color:rgba(196,181,253,.35)}
+.demo-select{background:rgba(196,181,253,.06);border:.5px solid var(--border2);border-radius:10px;padding:.75rem 1rem;color:var(--text);font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;width:100%;cursor:pointer}
+.demo-select option{background:#0d0920}
+.demo-btn{width:100%;background:var(--indigo);color:white;border:none;border-radius:10px;padding:.78rem;font-family:'DM Sans',sans-serif;font-size:.85rem;cursor:pointer;transition:all .2s;margin-top:.25rem}
+.demo-btn:hover{opacity:.85}
+.demo-result{margin-top:2rem;display:none}
+.demo-result.show{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.dr-main{background:rgba(83,74,183,.08);border:.5px solid rgba(83,74,183,.2);border-radius:16px;padding:1.75rem;text-align:center}
+.dr-mantra{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--lav);letter-spacing:.08em;margin-bottom:.4rem}
+.dr-meaning{font-size:.72rem;color:var(--textd);font-style:italic;line-height:1.6;margin-bottom:1rem}
+.dr-freq-main{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);font-weight:300;line-height:1}
+.dr-freq-name{font-size:.72rem;color:var(--textd);margin-top:.2rem}
+.dr-sequence{background:var(--surface);border:.5px solid var(--border);border-radius:16px;padding:1.5rem}
+.dr-seq-title{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--textg);margin-bottom:1rem}
+.dr-seq-item{display:flex;align-items:center;gap:.85rem;padding:.65rem 0;border-bottom:.5px solid rgba(196,181,253,.05)}
+.dr-seq-item:last-child{border-bottom:none}
+.dr-seq-hz{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);opacity:.7;width:55px;flex-shrink:0}
+.dr-seq-info{flex:1}
+.dr-seq-name{font-size:.72rem;color:var(--lav);font-weight:400}
+.dr-seq-time{font-size:.62rem;color:var(--textd)}
+.dr-seq-now{font-size:.6rem;color:var(--green);margin-left:.5rem}
+.dr-explain{margin-top:1.5rem;display:none}
+.dr-explain.show{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem}
+.dex{background:var(--iglow);border:.5px solid rgba(83,74,183,.15);border-radius:11px;padding:.9rem 1.1rem}
+.dex-label{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--textg);margin-bottom:.35rem}
+.dex-val{font-size:.78rem;color:var(--lav);font-weight:400;margin-bottom:.18rem}
+.dex-desc{font-size:.67rem;color:var(--textd);line-height:1.5}
+
+/* TRADITIONS */
+.trad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.trad-card{background:var(--surface);border:.5px solid var(--border);border-radius:20px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.trad-card:hover{background:var(--surface2);border-color:var(--border2);transform:translateY(-3px)}
+.trad-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
+.trad-card:hover::after{opacity:1}
+.trad-icon{font-size:1.75rem;margin-bottom:1rem;opacity:.55;display:block}
+.trad-name{font-size:.78rem;font-weight:500;color:var(--lav);letter-spacing:.05em;margin-bottom:.25rem}
+.trad-origin{font-size:.6rem;color:var(--goldd);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem}
+.trad-desc{font-size:.78rem;color:var(--textd);line-height:1.75}
+.trad-contrib{margin-top:.85rem;background:var(--iglow);border:.5px solid rgba(83,74,183,.15);border-radius:9px;padding:.6rem .85rem;font-size:.7rem;color:var(--lav);font-style:italic}
+
+/* USE CASES — STREAMING */
+.use-hero{background:linear-gradient(135deg,rgba(83,74,183,.08) 0%,rgba(232,197,71,.04) 100%);border:.5px solid rgba(83,74,183,.18);border-radius:28px;padding:4rem 3rem;margin-top:1rem;text-align:center;position:relative;overflow:hidden}
+.use-hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(83,74,183,.06) 0%,transparent 70%);pointer-events:none}
+.use-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:300;color:var(--lav);margin-bottom:1rem;position:relative;z-index:2}
+.use-desc{font-size:.92rem;color:var(--textd);line-height:1.9;max-width:620px;margin:0 auto 2.5rem;position:relative;z-index:2}
+.use-cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.uc-card{background:var(--surface);border:.5px solid var(--border);border-radius:20px;padding:2rem 1.75rem;transition:all .3s;text-align:left}
+.uc-card:hover{background:var(--surface2);border-color:var(--border2);transform:translateY(-3px)}
+.uc-icon{font-size:1.5rem;margin-bottom:1rem;opacity:.6;display:block}
+.uc-title{font-size:.82rem;font-weight:500;color:var(--lav);margin-bottom:.5rem}
+.uc-desc{font-size:.78rem;color:var(--textd);line-height:1.75}
+.uc-tag{display:inline-block;background:var(--golddim);border:.5px solid rgba(232,197,71,.2);border-radius:100px;font-size:.6rem;color:var(--goldd);padding:.2rem .65rem;margin-top:.75rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* HOW STREAM WORKS */
+.stream-flow{display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:0;margin-top:3rem}
+.sf-step{text-align:center;padding:1.5rem 1rem;position:relative}
+.sf-icon{width:52px;height:52px;border-radius:50%;background:var(--iglow);border:.5px solid rgba(83,74,183,.25);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-size:1.1rem}
+.sf-title{font-size:.72rem;font-weight:500;color:var(--lav);margin-bottom:.3rem}
+.sf-desc{font-size:.65rem;color:var(--textd);line-height:1.55}
+.sf-arrow{display:flex;align-items:center;justify-content:center;color:var(--border2);font-size:1.2rem;padding-top:1.5rem}
+
+/* TRANSPARENCY */
+.transparency-block{background:rgba(83,74,183,.05);border:.5px solid rgba(83,74,183,.15);border-radius:24px;padding:3.5rem;margin-top:1rem}
+.tb-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--lav);margin-bottom:1.25rem}
+.tb-text{font-size:.88rem;color:var(--textd);line-height:1.95;max-width:680px}
+.tb-items{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.75rem}
+.tb-item{display:flex;align-items:flex-start;gap:.75rem}
+.tb-check{width:22px;height:22px;border-radius:50%;background:var(--iglow);border:.5px solid rgba(83,74,183,.3);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--indigo2);flex-shrink:0;margin-top:.1rem}
+.tb-item-text{font-size:.78rem;color:var(--textd);line-height:1.6}
+.tb-quote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--lavd);border-left:2px solid var(--indigo);padding-left:1.5rem;margin-top:1.75rem;line-height:1.7}
+
+/* PLANS */
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.pcard{background:var(--surface);border:.5px solid var(--border);border-radius:22px;padding:2.25rem 1.75rem;position:relative;transition:transform .3s}
+.pcard:hover{transform:translateY(-4px)}
+.pcard.hot{border-color:rgba(83,74,183,.4);background:rgba(83,74,183,.07)}
+.pcard.premium{border-color:rgba(232,197,71,.3);background:rgba(232,197,71,.04)}
+.p-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem 1.25rem;border-radius:0 0 10px 10px;white-space:nowrap}
+.p-badge.purple{background:var(--indigo);color:rgba(255,255,255,.92)}
+.p-badge.gold{background:var(--gold);color:#1a0f00;font-weight:500}
+.p-name{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--textg);margin-bottom:.9rem}
+.p-price{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--lav);line-height:1}
+.p-price-small{font-size:1.4rem}
+.p-period{font-size:.7rem;color:var(--textd);margin-top:.2rem;margin-bottom:1.5rem}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem}
+.p-feats li{font-size:.73rem;color:var(--textd);display:flex;align-items:flex-start;gap:.5rem;line-height:1.45}
+.p-feats li::before{content:'—';color:var(--indigo2);flex-shrink:0;margin-top:.05rem}
+.p-feats li.off{opacity:.22}
+.p-feats li.off::before{content:'·'}
+.p-feats li.gold-feat{color:rgba(232,197,71,.75)}
+.p-feats li.gold-feat::before{content:'★';color:var(--gold);opacity:.7}
+.pbtn{display:block;text-align:center;padding:.72rem;border-radius:10px;font-size:.76rem;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif;cursor:pointer;border:none}
+.pbtn-solid{background:var(--indigo);color:white}
+.pbtn-solid:hover{opacity:.85}
+.pbtn-outline{border:.5px solid var(--border2);color:var(--lavd);background:transparent}
+.pbtn-outline:hover{border-color:var(--lavd);color:var(--lav)}
+.pbtn-gold{background:var(--gold);color:#1a0f00;font-weight:500}
+.pbtn-gold:hover{opacity:.88}
+
+/* 30 DAY SPECIAL */
+.thirty-day{background:linear-gradient(135deg,rgba(232,197,71,.08) 0%,rgba(83,74,183,.06) 100%);border:.5px solid rgba(232,197,71,.2);border-radius:28px;padding:4rem 3rem;margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.td-left h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--gold);margin-bottom:1rem;line-height:1.2}
+.td-left p{font-size:.88rem;color:var(--textd);line-height:1.9;margin-bottom:1.5rem}
+.td-scenarios{display:flex;flex-direction:column;gap:.65rem}
+.td-scenario{display:flex;align-items:center;gap:.75rem;font-size:.78rem;color:var(--textd)}
+.td-scenario-icon{width:30px;height:30px;border-radius:8px;background:var(--golddim);border:.5px solid rgba(232,197,71,.18);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+.td-right{background:var(--surface);border:.5px solid rgba(232,197,71,.15);border-radius:20px;padding:2rem}
+.td-price-block{text-align:center;margin-bottom:1.75rem}
+.td-price{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--gold);line-height:1}
+.td-period{font-size:.72rem;color:var(--textd);margin-top:.2rem}
+.td-features{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem}
+.td-features li{font-size:.75rem;color:var(--textd);display:flex;align-items:flex-start;gap:.5rem;line-height:1.45}
+.td-features li::before{content:'★';color:var(--gold);opacity:.6;flex-shrink:0;font-size:.6rem;margin-top:.15rem}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.tcard{background:var(--surface);border:.5px solid var(--border);border-radius:20px;padding:1.75rem;transition:all .3s}
+.tcard:hover{background:var(--surface2)}
+.tcard-stars{display:flex;gap:.2rem;margin-bottom:1rem}
+.tcard-star{color:var(--gold);opacity:.7;font-size:.75rem}
+.tcard-text{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--textd);line-height:1.75;margin-bottom:1.25rem}
+.tcard-author{display:flex;align-items:center;gap:.65rem}
+.tcard-av{width:34px;height:34px;border-radius:50%;background:var(--iglow);border:.5px solid rgba(83,74,183,.2);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--lavd);font-weight:500;flex-shrink:0}
+.tcard-name{font-size:.78rem;font-weight:500;color:var(--lav)}
+.tcard-role{font-size:.65rem;color:var(--textg)}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:.75rem;margin-top:2.5rem;max-width:720px}
+.faq-item{background:var(--surface);border:.5px solid var(--border);border-radius:14px;overflow:hidden;transition:border .2s}
+.faq-item.open{border-color:rgba(83,74,183,.25)}
+.faq-q{padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:.82rem;color:var(--text);font-weight:400;transition:color .2s}
+.faq-q:hover{color:var(--lav)}
+.faq-arrow{font-size:.7rem;color:var(--textg);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding:0 1.5rem 1.1rem}
+.faq-a-text{font-size:.78rem;color:var(--textd);line-height:1.8}
+
+/* CTA FINAL */
+.cta-final{text-align:center;padding:6rem 2rem;position:relative;overflow:hidden}
+.cta-final-glow{position:absolute;width:600px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(83,74,183,.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+
+/* FOOTER */
+footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-template-columns:1fr 2fr 1fr;align-items:center;gap:2rem}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;letter-spacing:.2em;color:var(--lav);opacity:.3}
+.f-text{font-size:.68rem;color:var(--textg);line-height:1.8;text-align:center}
+.f-links{display:flex;gap:1.5rem;justify-content:flex-end}
+.f-links a{font-size:.68rem;color:var(--textg);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--lavd)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .85s ease,transform .85s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv2{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rv2.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .freq7-grid{grid-template-columns:repeat(4,1fr)}
+  .plans-grid{grid-template-columns:repeat(2,1fr)}
+  .thirty-day{grid-template-columns:1fr}
+  .stream-flow{grid-template-columns:1fr}
+  .sf-arrow{display:none}
+  footer{grid-template-columns:1fr;text-align:center}
+  .f-links{justify-content:center}
+  nav{padding:1rem 1.5rem}
+  .trust{padding:1rem 1.5rem;gap:1.25rem}
+}
+@media(max-width:768px){
+  .freq7-grid{grid-template-columns:repeat(2,1fr)}
+  .persona-flow{grid-template-columns:1fr}
+  .trad-grid,.use-cases-grid,.testi-grid{grid-template-columns:1fr}
+  .demo-grid{grid-template-columns:1fr 1fr}
+  .demo-result.show{grid-template-columns:1fr}
+  .dr-explain.show{grid-template-columns:1fr}
+  .tb-items{grid-template-columns:1fr}
+  .nlinks{display:none}
+  .sec,.sec-sm{padding:4rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nlogo">ŌHM</div>
+  <ul class="nlinks">
+    <li><a href="#frequencias">As 7 Frequências</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#usos">Para seu espaço</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="http://187.77.60.16:4100" class="ncta">Começar agora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-mesh"></div>
+  <div class="om-hero">ॐ</div>
+
+  <div class="hero-live rv"><span class="live-dot"></span>Streaming ao vivo — servidores ativos 24/7</div>
+  <p class="hero-eyebrow">Sânscrito védico · 7 frequências Solfeggio · Streaming personalizado</p>
+  <h1 class="hero-title">ŌHM<span>O som que foi feito para você</span></h1>
+  <p class="hero-desc">O único sistema de streaming vibracional personalizado do Brasil. Seu nome, sua data de nascimento, sua hora de entrada no mundo — transformados nas 7 frequências sagradas Solfeggio em rotação contínua. Para você, seu espaço ou seu negócio.</p>
+
+  <div class="hero-acts rv">
+    <a href="http://187.77.60.16:4100" class="btn-p">Descobrir minhas frequências</a>
+    <a href="#como-funciona" class="btn-g">Como funciona</a>
+  </div>
+
+  <div class="freq-vis rv">
+    <div class="fbar" style="height:12px;animation-delay:0s;background:#4ade80"></div>
+    <div class="fbar" style="height:20px;animation-delay:.1s;background:#64b4ff"></div>
+    <div class="fbar" style="height:30px;animation-delay:.2s;background:#c4b5fd"></div>
+    <div class="fbar" style="height:38px;animation-delay:.3s;background:#ffb464"></div>
+    <div class="fbar" style="height:30px;animation-delay:.4s;background:#E8C547"></div>
+    <div class="fbar" style="height:22px;animation-delay:.5s;background:#ff7878"></div>
+    <div class="fbar" style="height:32px;animation-delay:.6s;background:#b464ff"></div>
+    <div class="fbar" style="height:18px;animation-delay:.7s;background:#4ade80"></div>
+    <div class="fbar" style="height:28px;animation-delay:.8s;background:#64b4ff"></div>
+    <div class="fbar" style="height:36px;animation-delay:.9s;background:#c4b5fd"></div>
+    <div class="fbar" style="height:24px;animation-delay:1s;background:#ffb464"></div>
+    <div class="fbar" style="height:16px;animation-delay:1.1s;background:#E8C547"></div>
+    <div class="fbar" style="height:26px;animation-delay:1.2s;background:#ff7878"></div>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-item"><span class="trust-dot"></span>7 frequências Solfeggio</div>
+  <div class="trust-item"><span class="trust-dot"></span>Sânscrito védico — 3.000 anos</div>
+  <div class="trust-item"><span class="trust-dot"></span>Hermetismo clássico</div>
+  <div class="trust-item"><span class="trust-dot"></span>Zoroastrismo — Avesta</div>
+  <div class="trust-item"><span class="trust-dot"></span>Streaming real ao vivo</div>
+  <div class="trust-item"><span class="trust-dot"></span>100% transparente</div>
+  <div class="trust-item"><span class="trust-dot"></span>Sem promessas médicas</div>
+</div>
+
+<!-- AS 7 FREQUÊNCIAS -->
+<div class="divider rv"></div>
+<section class="sec" id="frequencias">
+  <div class="freq7-intro rv">
+    <span class="sec-label">O fundamento sonoro</span>
+    <h2 class="sec-title">As 7 Frequências <em>Solfeggio</em></h2>
+    <p class="sec-body" style="margin:0 auto;text-align:center">Sistema de 7 tons com origem no canto gregoriano medieval, documentado pelo Dr. Joseph Puleo nos anos 1990 a partir de manuscritos bíblicos em numerologia latina. Cada frequência corresponde a uma qualidade específica — e você recebe as 4 mais alinhadas com sua intenção em rotação contínua.</p>
+  </div>
+
+  <div class="freq7-grid rv2">
+    <div class="freq7-card" style="--c:rgba(74,222,128,.7)">
+      <div class="freq7-bar" style="background:rgba(74,222,128,.5)"></div>
+      <div class="freq7-hz">396</div>
+      <div class="freq7-name">Liberação</div>
+      <div class="freq7-intent">Dissolução de medo, culpa e padrões limitantes</div>
+      <div class="freq7-origin">Solfeggio "Ut queant laxis"</div>
+    </div>
+    <div class="freq7-card">
+      <div class="freq7-bar" style="background:rgba(100,180,255,.5)"></div>
+      <div class="freq7-hz">417</div>
+      <div class="freq7-name">Mudança</div>
+      <div class="freq7-intent">Facilitação de transformações e dissolução de bloqueios</div>
+      <div class="freq7-origin">Solfeggio "Resonare fibris"</div>
+    </div>
+    <div class="freq7-card" style="border-color:rgba(196,181,253,.2)">
+      <div class="freq7-bar" style="background:rgba(196,181,253,.6)"></div>
+      <div class="freq7-hz">528</div>
+      <div class="freq7-name">Transformação</div>
+      <div class="freq7-intent">Bem-estar, foco e reparo — a mais estudada das 7</div>
+      <div class="freq7-origin">Solfeggio "Mira gestorum"</div>
+    </div>
+    <div class="freq7-card">
+      <div class="freq7-bar" style="background:rgba(255,180,100,.5)"></div>
+      <div class="freq7-hz">639</div>
+      <div class="freq7-name">Conexão</div>
+      <div class="freq7-intent">Harmonização de relações, comunicação e amor</div>
+      <div class="freq7-origin">Solfeggio "Famuli tuorum"</div>
+    </div>
+    <div class="freq7-card">
+      <div class="freq7-bar" style="background:rgba(232,197,71,.5)"></div>
+      <div class="freq7-hz">741</div>
+      <div class="freq7-name">Expressão</div>
+      <div class="freq7-intent">Clareza mental, solução de problemas e criatividade</div>
+      <div class="freq7-origin">Solfeggio "Solve polluti"</div>
+    </div>
+    <div class="freq7-card">
+      <div class="freq7-bar" style="background:rgba(255,120,120,.5)"></div>
+      <div class="freq7-hz">852</div>
+      <div class="freq7-name">Ordem</div>
+      <div class="freq7-intent">Retorno à ordem espiritual e intuição elevada</div>
+      <div class="freq7-origin">Solfeggio "Labii reatum"</div>
+    </div>
+    <div class="freq7-card">
+      <div class="freq7-bar" style="background:rgba(180,100,255,.5)"></div>
+      <div class="freq7-hz">963</div>
+      <div class="freq7-name">Consciência</div>
+      <div class="freq7-intent">Conexão com a frequência mais elevada — presença pura</div>
+      <div class="freq7-origin">Solfeggio "Sancte Iohannes"</div>
+    </div>
+  </div>
+
+  <div class="solfeggio-spectrum rv">
+    <div class="spectrum-title">Espectro Solfeggio — as 7 frequências em escala</div>
+    <div class="spectrum-bars">
+      <div class="spec-bar" style="width:52px;height:45px;background:rgba(74,222,128,.5);border-radius:3px 3px 0 0"><span class="spec-label">396 Hz</span></div>
+      <div class="spec-bar" style="width:52px;height:55px;background:rgba(100,180,255,.5);border-radius:3px 3px 0 0"><span class="spec-label">417 Hz</span></div>
+      <div class="spec-bar" style="width:52px;height:65px;background:rgba(196,181,253,.7);border-radius:3px 3px 0 0"><span class="spec-label">528 Hz</span></div>
+      <div class="spec-bar" style="width:52px;height:55px;background:rgba(255,180,100,.5);border-radius:3px 3px 0 0"><span class="spec-label">639 Hz</span></div>
+      <div class="spec-bar" style="width:52px;height:60px;background:rgba(232,197,71,.6);border-radius:3px 3px 0 0"><span class="spec-label">741 Hz</span></div>
+      <div class="spec-bar" style="width:52px;height:50px;background:rgba(255,120,120,.5);border-radius:3px 3px 0 0"><span class="spec-label">852 Hz</span></div>
+      <div class="spec-bar" style="width:52px;height:70px;background:rgba(180,100,255,.6);border-radius:3px 3px 0 0"><span class="spec-label">963 Hz</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO CHEGAMOS À SUA SEQUÊNCIA -->
+<div class="divider rv"></div>
+<section class="sec" id="como-funciona">
+  <span class="sec-label rv">Total transparência</span>
+  <h2 class="sec-title rv">Como chegamos <em>à sua sequência única</em></h2>
+  <p class="sec-body rv">Você recebe 4 das 7 frequências em rotação — selecionadas e ordenadas com base em quatro camadas de dados pessoais. Aqui explicamos cada passo com precisão matemática.</p>
+
+  <div class="persona-flow rv">
+    <div class="pf-block">
+      <div class="pf-arrow"></div>
+      <div class="pf-num">01</div>
+      <div class="pf-title">Fonemas sânscritos do nome</div>
+      <div class="pf-desc">Os 50 fonemas do sânscrito — classificados nos Shikshā (tratados fonéticos védicos, ~600 a.C.) — têm qualidades arquetípicas associadas. Seu nome é mapeado para os 4 fonemas dominantes.</div>
+      <div class="pf-example">DANILO → Da(determinação) · Aa(expansão) · Na(renovação) · Ia(intuição) → frequências: 528 · 639 · 417 · 852</div>
+    </div>
+    <div class="pf-block">
+      <div class="pf-arrow"></div>
+      <div class="pf-num">02</div>
+      <div class="pf-title">Número védico (Jyotish)</div>
+      <div class="pf-desc">Na astrologia védica, a soma reduzida da data de nascimento revela o Graha (planeta regente). Cada planeta tem uma frequência dominante que define a ordem de rotação da sequência.</div>
+      <div class="pf-example">15/03/1985 → soma 32 → reduz para 5 → Mercúrio → frequência base 528 Hz → rotação começa em 528</div>
+    </div>
+    <div class="pf-block">
+      <div class="pf-arrow"></div>
+      <div class="pf-num">03</div>
+      <div class="pf-title">Planeta das Horas (Hermetismo)</div>
+      <div class="pf-desc">O Corpus Hermeticum (séc. II d.C.) atribui a cada hora do dia um planeta regente em ciclos de 24h. A hora de nascimento determina o "Planeta das Horas" — que ajusta o ritmo de troca entre frequências.</div>
+      <div class="pf-example">Nascido às 14h35 numa quinta → hora 9 de Quinta → Mercúrio → ritmo de 21 minutos por frequência</div>
+    </div>
+    <div class="pf-block">
+      <div class="pf-num">04</div>
+      <div class="pf-title">Yazata zoroastrista + Intenção</div>
+      <div class="pf-desc">O calendário do Avesta atribui um Yazata (arquétipo divino) a cada dia do ano. Combinado com a intenção escolhida, define quais 4 das 7 frequências você recebe.</div>
+      <div class="pf-example">Intenção: Prosperidade → sequência base: 528 · 639 · 741 · 852 Hz<br>Yazata Mihr (dia 16) → prioriza 639 Hz (conexão e contrato)</div>
+    </div>
+  </div>
+
+  <!-- DEMO INTERATIVO -->
+  <div class="demo-wrap rv" style="margin-top:3rem">
+    <span class="sec-label" style="margin-bottom:.5rem">Experimente agora</span>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--lav);margin-bottom:1.5rem">Calcule suas frequências — com explicação completa</h3>
+    <div class="demo-grid">
+      <input class="demo-input" id="d-name" placeholder="Seu nome completo" type="text"/>
+      <input class="demo-input" id="d-date" placeholder="Data de nascimento" type="date"/>
+      <input class="demo-input" id="d-time" placeholder="Hora (opcional)" type="time"/>
+      <select class="demo-select" id="d-intent">
+        <option value="paz">☽ Paz interior</option>
+        <option value="prosperidade">✦ Prosperidade</option>
+        <option value="protecao">◈ Proteção</option>
+        <option value="foco">◎ Foco e clareza</option>
+        <option value="amor">♡ Amor e relações</option>
+        <option value="transformacao">⟁ Transformação</option>
+      </select>
+    </div>
+    <button class="demo-btn" onclick="calcDemo()">Calcular minhas frequências — com fórmula completa</button>
+
+    <div class="demo-result" id="demo-result">
+      <div class="dr-main">
+        <div style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(226,217,243,.2);margin-bottom:.75rem">Seu mantra védico</div>
+        <div class="dr-mantra" id="dr-mantra"></div>
+        <div class="dr-meaning" id="dr-meaning"></div>
+        <div style="height:.5px;background:rgba(196,181,253,.1);margin:1rem 0"></div>
+        <div style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(226,217,243,.2);margin-bottom:.5rem">Frequência dominante agora</div>
+        <div class="dr-freq-main" id="dr-freq-main"></div>
+        <div class="dr-freq-name" id="dr-freq-name"></div>
+      </div>
+      <div class="dr-sequence">
+        <div class="dr-seq-title">Sua sequência de rotação — 24h</div>
+        <div id="dr-sequence"></div>
+      </div>
+    </div>
+
+    <div class="dr-explain" id="dr-explain">
+      <div class="dex">
+        <div class="dex-label">Nome → fonemas</div>
+        <div class="dex-val" id="dex-fonemas"></div>
+        <div class="dex-desc" id="dex-fonemas-desc"></div>
+      </div>
+      <div class="dex">
+        <div class="dex-label">Número védico</div>
+        <div class="dex-val" id="dex-vedic"></div>
+        <div class="dex-desc" id="dex-vedic-desc"></div>
+      </div>
+      <div class="dex">
+        <div class="dex-label">Yazata do nascimento</div>
+        <div class="dex-val" id="dex-yazata"></div>
+        <div class="dex-desc" id="dex-yazata-desc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADIÇÕES -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">As raízes</span>
+  <h2 class="sec-title rv">Três tradições milenares, <em>uma sequência</em></h2>
+  <div class="trad-grid rv2">
+    <div class="trad-card" style="--c:var(--indigo)">
+      <span class="trad-icon">🕉</span>
+      <div class="trad-name">Tradição Védica — Sânscrito</div>
+      <div class="trad-origin">Índia · 1500 a.C. — presente</div>
+      <div class="trad-desc">Os Vedas são os textos mais antigos do mundo ainda em uso ativo. O sânscrito possui 50 fonemas classificados nos Shikshā com qualidades arquetípicas específicas. Jyotish, a astrologia védica, mapeia datas a planetas e qualidades vibratórias.</div>
+      <div class="trad-contrib">Contribui: fonemas do nome, número védico e mantra pessoal</div>
+    </div>
+    <div class="trad-card">
+      <span class="trad-icon">⚗️</span>
+      <div class="trad-name">Hermetismo Clássico</div>
+      <div class="trad-origin">Egito greco-romano · séc. II d.C. — presente</div>
+      <div class="trad-desc">O Corpus Hermeticum sintetiza conhecimento egípcio e grego. Os Horários Planetários — sistema de 24h onde cada hora é regida por um planeta — são usados por tradições herméticas e cabalísticas há mais de 1.800 anos como mapa de qualidades temporais.</div>
+      <div class="trad-contrib">Contribui: ritmo de troca entre frequências via Planeta das Horas</div>
+    </div>
+    <div class="trad-card">
+      <span class="trad-icon">🔥</span>
+      <div class="trad-name">Zoroastrismo — Avesta</div>
+      <div class="trad-origin">Pérsia · 1200 a.C. — presente</div>
+      <div class="trad-desc">Uma das mais antigas religiões monoteístas ainda praticadas. O Avesta atribui a cada dia do ano um Yazata — entidade divina com qualidades e intenções específicas. O calendário Fasli é a fonte do mapeamento de dias a arquétipos.</div>
+      <div class="trad-contrib">Contribui: intenção arquetípica e seleção das 4 frequências da sequência</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO O STREAM FUNCIONA -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">Tecnologia real</span>
+  <h2 class="sec-title rv">Como o streaming <em>funciona de verdade</em></h2>
+  <p class="sec-body rv">Sem promessas mágicas. O ŌHM é um rádio online personalizado — como Spotify, mas com suas frequências. Aqui está o que acontece tecnicamente.</p>
+
+  <div class="stream-flow rv">
+    <div class="sf-step">
+      <div class="sf-icon">⚙️</div>
+      <div class="sf-title">Geração</div>
+      <div class="sf-desc">Servidor sintetiza onda senoidal pura na sua frequência exata em tempo real</div>
+    </div>
+    <div class="sf-arrow">→</div>
+    <div class="sf-step">
+      <div class="sf-icon">🔄</div>
+      <div class="sf-title">Rotação</div>
+      <div class="sf-desc">A cada ciclo, muda para a próxima frequência da sua sequência pessoal</div>
+    </div>
+    <div class="sf-arrow">→</div>
+    <div class="sf-step">
+      <div class="sf-icon">📡</div>
+      <div class="sf-title">Stream</div>
+      <div class="sf-desc">Audio ao vivo transmitido via HTTP — como uma rádio online dedicada</div>
+    </div>
+    <div class="sf-arrow">→</div>
+    <div class="sf-step">
+      <div class="sf-icon">🎧</div>
+      <div class="sf-title">Você ouve</div>
+      <div class="sf-desc">No app, no navegador, ou com o celular bloqueado — contínuo</div>
+    </div>
+    <div class="sf-arrow">→</div>
+    <div class="sf-step">
+      <div class="sf-icon">📊</div>
+      <div class="sf-title">Log real</div>
+      <div class="sf-desc">Cada segundo de emissão é registrado e verificável por você</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA SEU ESPAÇO / NEGÓCIO -->
+<div class="divider rv"></div>
+<section class="sec" id="usos">
+  <div class="use-hero rv">
+    <h2 class="use-title">O ŌHM não é só para você.<br>É para o seu espaço.</h2>
+    <p class="use-desc">Uma intenção, 30 dias, 24 horas por dia — no seu consultório, clínica, loja, escritório ou casa. O servidor toca sua frequência escolhida continuamente. Você conecta uma caixa de som e o ambiente vibra.</p>
+    <a href="#planos" class="btn-gold">Ver plano Ambiente 30 dias</a>
+  </div>
+
+  <div class="use-cases-grid rv2">
+    <div class="uc-card">
+      <span class="uc-icon">🏥</span>
+      <div class="uc-title">Consultórios e Clínicas</div>
+      <div class="uc-desc">Frequências de paz (396 Hz) e transformação (528 Hz) tocando continuamente na sala de espera e de atendimento. Ambiente de acolhimento e suporte sem esforço.</div>
+      <span class="uc-tag">528 Hz · Paz · Transformação</span>
+    </div>
+    <div class="uc-card">
+      <span class="uc-icon">🧘</span>
+      <div class="uc-title">Studios de Yoga e Meditação</div>
+      <div class="uc-desc">A sequência completa das 7 frequências em rotação durante aulas e sessões. Ou uma frequência específica fixa para práticas guiadas — você controla pelo app.</div>
+      <span class="uc-tag">963 Hz · 528 Hz · Elevação</span>
+    </div>
+    <div class="uc-card">
+      <span class="uc-icon">🛍️</span>
+      <div class="uc-title">Lojas e Espaços Comerciais</div>
+      <div class="uc-desc">Frequência de prosperidade e conexão (639 Hz) criando um ambiente de receptividade e bem-estar para clientes. Discreto, contínuo, verificável.</div>
+      <span class="uc-tag">639 Hz · Prosperidade · Conexão</span>
+    </div>
+    <div class="uc-card">
+      <span class="uc-icon">🏠</span>
+      <div class="uc-title">Ambientes Residenciais</div>
+      <div class="uc-desc">Sua casa com a frequência que você escolheu — paz, amor, proteção. Tocando 24/7 via caixa de som conectada ao seu stream dedicado.</div>
+      <span class="uc-tag">396 Hz · Paz · Proteção</span>
+    </div>
+    <div class="uc-card">
+      <span class="uc-icon">💼</span>
+      <div class="uc-title">Escritórios e Coworkings</div>
+      <div class="uc-desc">Frequência de foco e clareza mental (741 Hz) durante o horário de trabalho. Ciclo védico automático que ajusta a frequência conforme o período do dia.</div>
+      <span class="uc-tag">741 Hz · Foco · Clareza</span>
+    </div>
+    <div class="uc-card">
+      <span class="uc-icon">🌱</span>
+      <div class="uc-title">Projetos de Intenção</div>
+      <div class="uc-desc">30 dias com uma intenção específica — lançamento de negócio, transição de vida, cura de relacionamento. Uma frequência, uma intenção, 30 dias contínuos.</div>
+      <span class="uc-tag">30 dias · 1 intenção · Foco total</span>
+    </div>
+  </div>
+</section>
+
+<!-- 30 DIAS ESPECIAL -->
+<div class="divider rv"></div>
+<section class="sec-sm">
+  <div class="thirty-day rv">
+    <div class="td-left">
+      <h3>30 dias.<br>Uma intenção.<br>Seu espaço transformado.</h3>
+      <p>Assine por 30 dias e escolha uma única intenção para tocar 24 horas por dia no seu espaço. O servidor mantém o stream ativo continuamente — você só precisa de uma caixa de som conectada ao link dedicado.</p>
+      <div class="td-scenarios">
+        <div class="td-scenario"><div class="td-scenario-icon">🚀</div>Lançamento de negócio — 30 dias em prosperidade (639 Hz)</div>
+        <div class="td-scenario"><div class="td-scenario-icon">💚</div>Processo de cura — 30 dias em transformação (528 Hz)</div>
+        <div class="td-scenario"><div class="td-scenario-icon">🧘</div>Retiro espiritual — 30 dias em consciência (963 Hz)</div>
+        <div class="td-scenario"><div class="td-scenario-icon">🏪</div>Abertura de loja — 30 dias em conexão (639 Hz)</div>
+        <div class="td-scenario"><div class="td-scenario-icon">🏠</div>Casa nova — 30 dias em proteção (396 Hz)</div>
+      </div>
+    </div>
+    <div class="td-right">
+      <div class="td-price-block">
+        <div style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(226,217,243,.25);margin-bottom:.75rem">Plano Ambiente 30 dias</div>
+        <div class="td-price">R$<span style="font-size:1.5rem"> </span>79<span style="font-size:1.5rem">,90</span></div>
+        <div class="td-period">30 dias corridos · sem renovação automática</div>
+      </div>
+      <ul class="td-features">
+        <li>1 intenção fixa à sua escolha</li>
+        <li>Stream 24/7 no servidor por 30 dias</li>
+        <li>URL de stream dedicada e exclusiva</li>
+        <li>Compatível com qualquer caixa de som</li>
+        <li>Dashboard de monitoramento em tempo real</li>
+        <li>Log verificável de cada hora de emissão</li>
+        <li>Troca de intenção até 3 vezes no período</li>
+        <li>Certificado digital de emissão ao final</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="btn-gold" style="display:block;text-align:center;padding:.85rem">Ativar meu espaço por 30 dias</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<div class="divider rv"></div>
+<section class="sec" id="planos">
+  <span class="sec-label rv">Simples e justo</span>
+  <h2 class="sec-title rv">Escolha como <em>quer vibrar</em></h2>
+  <p class="sec-body rv">Quatro planos. Cada um com propósito claro. Sem letras miúdas, sem renovação surpresa.</p>
+
+  <div class="plans-grid rv">
+    <div class="pcard">
+      <div class="p-name">Gratuito</div>
+      <div class="p-price">R$0</div>
+      <div class="p-period">para sempre</div>
+      <ul class="p-feats">
+        <li>2 frequências fixas (396 e 528 Hz)</li>
+        <li>Ciclo védico do momento</li>
+        <li>Mantra védico do seu nome</li>
+        <li class="off">Sequência personalizada das 7</li>
+        <li class="off">Streaming ao vivo</li>
+        <li class="off">Log de emissão</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-outline">Começar grátis</a>
+    </div>
+
+    <div class="pcard hot">
+      <div class="p-badge purple">Mais popular</div>
+      <div class="p-name">Pessoal</div>
+      <div class="p-price">R$9<span class="p-price-small">,90</span></div>
+      <div class="p-period">por mês</div>
+      <ul class="p-feats">
+        <li>Sequência das 7 frequências personalizada</li>
+        <li>Streaming ao vivo no app</li>
+        <li>Mantra védico + número védico</li>
+        <li>Hermetismo + Zoroastrismo</li>
+        <li>Ciclo védico automático</li>
+        <li>Troca de intenção ilimitada</li>
+        <li class="off">Stream 24/7 no servidor</li>
+        <li class="off">URL dedicada para espaço</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-solid">Assinar agora</a>
+    </div>
+
+    <div class="pcard">
+      <div class="p-name">Nuvem</div>
+      <div class="p-price">R$39<span class="p-price-small">,90</span></div>
+      <div class="p-period">por mês</div>
+      <ul class="p-feats">
+        <li>Tudo do Pessoal</li>
+        <li>Stream 24/7 no servidor</li>
+        <li>Independe do celular aberto</li>
+        <li>Emissão simultânea no aparelho</li>
+        <li>Log verificável completo</li>
+        <li>Dashboard de monitoramento</li>
+        <li class="off">URL para espaço físico</li>
+        <li class="off">30 dias por intenção</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-outline">Assinar</a>
+    </div>
+
+    <div class="pcard premium">
+      <div class="p-badge gold">Ambiente · 30 dias</div>
+      <div class="p-name">Espaço</div>
+      <div class="p-price">R$79<span class="p-price-small">,90</span></div>
+      <div class="p-period">30 dias · sem renovação automática</div>
+      <ul class="p-feats">
+        <li class="gold-feat">1 intenção fixa por 30 dias</li>
+        <li class="gold-feat">Stream 24/7 dedicado ao seu espaço</li>
+        <li class="gold-feat">URL exclusiva para caixa de som</li>
+        <li class="gold-feat">Log verificável hora a hora</li>
+        <li class="gold-feat">Certificado de emissão ao final</li>
+        <li>Troca de intenção até 3x</li>
+        <li>Dashboard de monitoramento</li>
+        <li>Suporte prioritário</li>
+      </ul>
+      <a href="http://187.77.60.16:4100" class="pbtn pbtn-gold">Ativar meu espaço</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARÊNCIA -->
+<div class="divider rv"></div>
+<section class="sec">
+  <div class="transparency-block rv">
+    <div class="tb-title">Transparência total — o que o ŌHM é e o que não é</div>
+    <p class="tb-text">O ŌHM é um sistema de streaming de áudio personalizado baseado em tradições milenares. Não tratamos doenças. Não garantimos resultados. Não usamos estudos falsos nem porcentagens inventadas. O que você vê é o que existe.</p>
+    <div class="tb-items">
+      <div class="tb-item">
+        <div class="tb-check">✓</div>
+        <div class="tb-item-text">Streaming de áudio real — você pode verificar a frequência com qualquer afinador ou medidor de frequências</div>
+      </div>
+      <div class="tb-item">
+        <div class="tb-check">✓</div>
+        <div class="tb-item-text">Log de emissão verificável — cada segundo registrado, disponível para download</div>
+      </div>
+      <div class="tb-item">
+        <div class="tb-check">✓</div>
+        <div class="tb-item-text">Fórmula pública — a lógica de cálculo do seu mantra e frequências está documentada e auditável</div>
+      </div>
+      <div class="tb-item">
+        <div class="tb-check">✓</div>
+        <div class="tb-item-text">Fontes rastreáveis — cada tradição citada tem referência histórica real, não inventada</div>
+      </div>
+      <div class="tb-item">
+        <div class="tb-check">✓</div>
+        <div class="tb-item-text">Sem promessas médicas — somos um app de som e bem-estar, não um tratamento de saúde</div>
+      </div>
+      <div class="tb-item">
+        <div class="tb-check">✓</div>
+        <div class="tb-item-text">Cancelamento simples — sem letras miúdas, sem dificuldade para cancelar</div>
+      </div>
+    </div>
+    <div class="tb-quote">"A única coisa que nenhum concorrente consegue copiar é a honestidade. Por isso ela é o nosso maior diferencial."</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">Experiências reais</span>
+  <h2 class="sec-title rv">O que dizem <em>quem usa</em></h2>
+  <div class="testi-grid rv2">
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-text">"Coloquei o ŌHM tocando no meu consultório de psicologia em 528 Hz. Pacientes comentam espontaneamente sobre a sensação de calma. Não sei explicar, mas o ambiente mudou."</div>
+      <div class="tcard-author"><div class="tcard-av">RA</div><div><div class="tcard-name">Renata A.</div><div class="tcard-role">Psicóloga · São Paulo · Plano Espaço</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-text">"O que me convenceu foi a transparência. Eles explicam exatamente como calculam meu mantra, qual tradição usaram, por quê aquelas frequências. Nunca vi isso em nenhum app espiritual."</div>
+      <div class="tcard-author"><div class="tcard-av">MC</div><div><div class="tcard-name">Marcos C.</div><div class="tcard-role">Empresário · Curitiba · Plano Nuvem</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-text">"Usei os 30 dias no lançamento da minha loja. Sei que pode ser coincidência. Mas as vendas da primeira semana foram o dobro do esperado. Renovei para mais 30 dias."</div>
+      <div class="tcard-author"><div class="tcard-av">FL</div><div><div class="tcard-name">Fernanda L.</div><div class="tcard-role">Empreendedora · Florianópolis · Plano Espaço</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="divider rv"></div>
+<section class="sec">
+  <span class="sec-label rv">Dúvidas frequentes</span>
+  <h2 class="sec-title rv">Perguntas <em>e respostas honestas</em></h2>
+  <div class="faq-list rv">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">O streaming realmente toca 24/7 no servidor mesmo com meu celular desligado? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p class="faq-a-text">Sim. Nos planos Nuvem e Espaço, o servidor sintetiza e transmite o áudio continuamente — independente do seu dispositivo. É como uma rádio online: ela toca mesmo quando você não está ouvindo. Você pode verificar isso acessando sua URL de stream de qualquer dispositivo a qualquer hora.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Como sei que a frequência sendo transmitida é a correta? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p class="faq-a-text">Você pode verificar com qualquer tuner ou medidor de frequências — apps gratuitos como "Spectroid" ou "Frequency Analyzer" mostram exatamente qual frequência está sendo emitida. Além disso, seu dashboard mostra a frequência atual em tempo real com log verificável.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">As frequências Solfeggio têm comprovação científica? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p class="faq-a-text">Base parcial. A 528 Hz tem estudos preliminares sobre redução de estresse (Rein, 1998). As demais têm base histórica e de tradição, mas sem consenso científico robusto. Somos honestos sobre isso: parte é ciência, parte é tradição, parte é experiência subjetiva. Você decide o que ressoa.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Posso usar o stream do plano Espaço em qualquer caixa de som? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p class="faq-a-text">Sim. Você recebe uma URL de stream que funciona em qualquer dispositivo com navegador — smartphone, tablet, computador, smart TV. Basta abrir a URL, dar play, e conectar ao sistema de som do seu espaço. Não precisa de equipamento especial.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Posso cancelar quando quiser? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p class="faq-a-text">Sim. Cancele quando quiser pelo app, sem burocracia. O plano Espaço de 30 dias não tem renovação automática — termina e pronto. Nos planos mensais, o acesso continua até o fim do período pago após o cancelamento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="divider rv"></div>
+<div class="cta-final rv">
+  <div class="cta-final-glow"></div>
+  <span class="sec-label" style="display:block">Comece agora</span>
+  <h2 class="sec-title" style="max-width:500px;margin:.5rem auto 1.1rem">Descubra o som<br><em>que foi feito para você</em></h2>
+  <p style="font-size:.88rem;color:var(--textd);margin-bottom:2.5rem;max-width:400px;margin-left:auto;margin-right:auto">Gratuito para começar. Sem cartão de crédito. Explicação completa de cada elemento do seu mantra.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <a href="http://187.77.60.16:4100" class="btn-p" style="font-size:.92rem;padding:1rem 2.75rem">Descobrir minhas frequências</a>
+    <a href="#planos" class="btn-gold" style="font-size:.92rem;padding:1rem 2.75rem">Ativar meu espaço — 30 dias</a>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">ŌHM</div>
+  <p class="f-text">
+    Streaming vibracional personalizado · 7 frequências Solfeggio · Sânscrito védico · Hermetismo · Zoroastrismo<br>
+    Não tratamos doenças · Sem promessas médicas · Total transparência · Streaming de áudio real e verificável<br>
+    © 2024 ŌHM · Todos os direitos reservados
+  </p>
+  <div class="f-links">
+    <a href="#">Privacidade</a>
+    <a href="#">Termos</a>
+    <a href="#">Verificar frequência</a>
+    <a href="http://187.77.60.16:4100">App</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis') })
+},{threshold:.06,rootMargin:'0px 0px -40px 0px'})
+document.querySelectorAll('.rv,.rv2').forEach(el=>obs.observe(el))
+
+// FAQ
+function toggleFaq(el) {
+  const item = el.parentElement
+  const isOpen = item.classList.contains('open')
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'))
+  if(!isOpen) item.classList.add('open')
+}
+
+// Freq card colors
+const FREQ_COLORS = {396:'rgba(74,222,128,.5)',417:'rgba(100,180,255,.5)',528:'rgba(196,181,253,.7)',639:'rgba(255,180,100,.5)',741:'rgba(232,197,71,.6)',852:'rgba(255,120,120,.5)',963:'rgba(180,100,255,.6)'}
+const FREQ_NAMES = {396:'Liberação',417:'Mudança',528:'Transformação',639:'Conexão',741:'Expressão',852:'Ordem',963:'Consciência'}
+
+// PHONEMES
+const PHONEMES={a:'expansão',b:'sustentação',c:'criatividade',d:'determinação',e:'expressão',f:'fluidez',g:'crescimento',h:'elevação',i:'intuição',j:'sabedoria',k:'estabilidade',l:'leveza',m:'propósito',n:'renovação',o:'conexão',p:'proteção',q:'clareza',r:'movimento',s:'pureza',t:'transformação',u:'unidade',v:'vitalidade',w:'força',x:'transmutação',y:'harmonia',z:'equilíbrio'}
+const VEDIC={1:{planet:'Sol',quality:'liderança'},2:{planet:'Lua',quality:'intuição'},3:{planet:'Júpiter',quality:'sabedoria'},4:{planet:'Rahu',quality:'transformação'},5:{planet:'Mercúrio',quality:'comunicação'},6:{planet:'Vênus',quality:'amor'},7:{planet:'Ketu',quality:'espiritualidade'},8:{planet:'Saturno',quality:'disciplina'},9:{planet:'Marte',quality:'energia'}}
+const YAZATA={1:'Hormozd',2:'Bahman',3:'Ardibehesht',4:'Shahrivar',5:'Espandarmaz',6:'Khordad',7:'Amordad',8:'Daepadar',9:'Azar',10:'Aban',11:'Khorshed',12:'Mah',13:'Tir',14:'Gosh',15:'Daepamihr',16:'Mihr',17:'Srosh',18:'Rashn',19:'Farvardin',20:'Bahram',21:'Ram',22:'Bad',23:'Daepadin',24:'Din',25:'Ard',26:'Ashtad',27:'Asman',28:'Zamyad',29:'Mahraspand',30:'Anagran'}
+const SEQUENCES={paz:[396,528,417,963],prosperidade:[528,639,741,852],protecao:[396,417,528,741],foco:[417,528,741,963],amor:[528,639,852,963],transformacao:[396,417,639,741]}
+const DURATIONS={1:38,2:25,3:21,4:32,5:18,6:28,7:22,8:35,9:30}
+
+function vedicNum(dateStr){
+  if(!dateStr)return{number:5,planet:'Mercúrio',quality:'comunicação'}
+  const d=dateStr.replace(/[^0-9]/g,'').split('').map(Number)
+  let s=d.reduce((a,b)=>a+b,0)
+  while(s>9)s=String(s).split('').map(Number).reduce((a,b)=>a+b,0)
+  return{number:s,...(VEDIC[s]||VEDIC[5])}
+}
+
+function getCurrentFreqIdx(sequence,durMin){
+  const now=new Date()
+  const minsToday=now.getHours()*60+now.getMinutes()
+  return Math.floor(minsToday/durMin)%sequence.length
+}
+
+function calcDemo(){
+  const name=document.getElementById('d-name').value||'Danilo'
+  const date=document.getElementById('d-date').value
+  const intent=document.getElementById('d-intent').value
+
+  // Mantra
+  const letters=[...new Set(name.toLowerCase().replace(/[^a-z]/g,'').split(''))].slice(0,4)
+  const qualities=letters.map(l=>PHONEMES[l]||'luz').join(' · ')
+  const syllables=letters.map(l=>l.toUpperCase()+'a').join('·')
+  const mantra=`Om ${syllables} Namah`
+
+  // Vedic
+  const vedic=vedicNum(date)
+  const durMin=DURATIONS[vedic.number]||21
+
+  // Sequence
+  const seq=SEQUENCES[intent]||SEQUENCES.paz
+  const currentIdx=getCurrentFreqIdx(seq,durMin)
+  const currentFreq=seq[currentIdx]
+
+  // Yazata
+  const day=date?new Date(date).getDate():16
+  const yaz=YAZATA[day]||'Mihr'
+
+  // Update DOM
+  document.getElementById('dr-mantra').textContent=mantra
+  document.getElementById('dr-meaning').textContent=`Honro a vibração de ${qualities} em mim`
+  document.getElementById('dr-freq-main').textContent=currentFreq+' Hz'
+  document.getElementById('dr-freq-name').textContent=FREQ_NAMES[currentFreq]||''
+
+  // Sequence list
+  let seqHTML=''
+  seq.forEach((hz,i)=>{
+    const isNow=i===currentIdx
+    const startMin=(i*durMin)%1440
+    const h=Math.floor(startMin/60).toString().padStart(2,'0')
+    const m=(startMin%60).toString().padStart(2,'0')
+    seqHTML+=`<div class="dr-seq-item">
+      <div class="dr-seq-hz">${hz}</div>
+      <div class="dr-seq-info">
+        <div class="dr-seq-name">${FREQ_NAMES[hz]}${isNow?'<span class="dr-seq-now">▶ agora</span>':''}</div>
+        <div class="dr-seq-time">${durMin} min · ciclo ${i+1} de ${seq.length}</div>
+      </div>
+    </div>`
+  })
+  document.getElementById('dr-sequence').innerHTML=seqHTML
+
+  // Explain
+  document.getElementById('dex-fonemas').textContent=syllables
+  document.getElementById('dex-fonemas-desc').textContent=`Letras de "${name}" → ${qualities}`
+  document.getElementById('dex-vedic').textContent=`${vedic.number} — ${vedic.planet}`
+  document.getElementById('dex-vedic-desc').textContent=`${vedic.quality} · ritmo de ${durMin} min por frequência`
+  document.getElementById('dex-yazata').textContent=yaz
+  document.getElementById('dex-yazata-desc').textContent=`Yazata do dia ${day} do mês de nascimento`
+
+  document.getElementById('demo-result').classList.add('show')
+  document.getElementById('dr-explain').classList.add('show')
+  document.getElementById('demo-result').scrollIntoView({behavior:'smooth',block:'nearest'})
+}
+</script>
+</body>
+</html>

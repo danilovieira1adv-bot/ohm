@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import StreamPlayer from './StreamPlayer.jsx'
 
 const API = 'http://187.77.60.16:4101/api'
 
@@ -927,7 +928,7 @@ function Dashboard({ profile, onLogout }) {
 
         <div className="content">
           {page === 'overview' && <Overview profile={profile} cycle={cycle} setPage={setPage} />}
-          {page === 'player' && <PlayerPanel profile={profile} cycle={cycle} />}
+          {page === 'player' && <StreamPlayer profile={profile} mantraData={generateMantra(profile.name)} />}
           {page === 'cycles' && (
             <div style={{ maxWidth: 600 }}>
               <div className="card">
