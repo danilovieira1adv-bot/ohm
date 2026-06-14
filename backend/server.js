@@ -8,10 +8,34 @@ const { PassThrough } = require('stream')
 
 const app = express()
 const PORT = process.env.PORT || 4001
-const JWT_SECRET = process.env.JWT_SECRET || 'ohm-secret-2024'
+const JWT_SECRET = process.env.JWT_SECRET
+if (!JWT_SECRET) { console.error('FATAL: JWT_SECRET nao definido'); process.exit(1) }
 
-app.use(cors())
+const ALLOWED = (process.env.CORS_ORIGINS || 'http://187.77.60.16:4100,http://localhost:4100').split(',')
+app.use(cors({ origin: (o, cb) => (!o || ALLOWED.includes(o)) ? cb(null, true) : cb(new Error('CORS')), credentials: true }))
 app.use(express.json())
+
+// ─── RATE LIMIT (em memoria) ───
+const _hits = new Map()
+function rateLimit(max, windowMs) {
+  return (req, res, next) => {
+    const key = (req.ip || 'x') + ':' + req.path
+    const now = Date.now()
+    const rec = _hits.get(key) || { count: 0, reset: now + windowMs }
+    if (now > rec.reset) { rec.count = 0; rec.reset = now + windowMs }
+    rec.count++; _hits.set(key, rec)
+    if (rec.count > max) return res.status(429).json({ error: 'Muitas tentativas. Aguarde.' })
+    next()
+  }
+}
+setInterval(() => { const n = Date.now(); for (const [k,v] of _hits) if (n > v.reset) _hits.delete(k) }, 60000)
+
+// ─── SANITIZE ───
+function sanitize(s) {
+  if (typeof s !== 'string') return s
+  return s.replace(/[<>]/g, '').replace(/javascript:/gi, '').trim().slice(0, 100)
+}
+
 
 // ─── DATABASE ────────────────────────────────────────────────────────────────
 
@@ -200,10 +224,13 @@ app.get('/api/cycle', (req, res) => res.json(getCurrentCycle()))
 
 // ─── AUTH ─────────────────────────────────────────────────────────────────────
 
-app.post('/api/register', async (req, res) => {
+app.post('/api/register', rateLimit(3, 300000), async (req, res) => {
   try {
-    const { name, email, password, birthdate, birthtime, intention } = req.body
+    let { name, email, password, birthdate, birthtime, intention } = req.body
     if (!name || !email || !password) return res.status(400).json({ error: 'Campos obrigatórios faltando' })
+    name = sanitize(name)
+    email = sanitize(email).toLowerCase()
+    if (!name) return res.status(400).json({ error: 'Nome inválido' })
 
     const hash = await bcrypt.hash(password, 10)
     const mantraData = generateMantra(name)
@@ -227,7 +254,7 @@ app.post('/api/register', async (req, res) => {
   }
 })
 
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', rateLimit(5, 60000), async (req, res) => {
   try {
     const { email, password } = req.body
     const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email)

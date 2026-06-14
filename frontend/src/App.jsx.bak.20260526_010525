@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { FrequencyJourney, UsageTutorial } from './OhmFrequencyExplainer'
-import OhmSpatialAudio from './ohm-spatial'
-import { computeSignature } from './ohm-mystic-engine'
 
 const API = 'http://187.77.60.16:4101/api'
 
@@ -350,139 +347,39 @@ input,select{font-family:'DM Sans',sans-serif}
 
 function useAudio() {
   const ctx = useRef(null)
-  const gainNode = useRef(null)
-  const oscs = useRef([])
-  const noiseRef = useRef(null)
-  const noiseGainRef = useRef(null)
+  const osc = useRef(null)
+  const gain = useRef(null)
 
-  const ADSR = { attack: 0.8, sustain: 0.32, release: 2.5 }
-  const FADE = 1.5
-
-  function _makeNoise(type, audioCtx, dest) {
-    const bufSize = audioCtx.sampleRate * 3
-    const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate)
-    const data = buf.getChannelData(0)
-    if (type === 'pink') {
-      let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0
-      for (let i=0;i<bufSize;i++) {
-        const w=Math.random()*2-1
-        b0=0.99886*b0+w*0.0555179; b1=0.99332*b1+w*0.0750759
-        b2=0.96900*b2+w*0.1538520; b3=0.86650*b3+w*0.3104856
-        b4=0.55000*b4+w*0.5329522; b5=-0.7616*b5-w*0.0168980
-        data[i]=(b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11; b6=w*0.115926
-      }
-    } else {
-      let last=0
-      for (let i=0;i<bufSize;i++) { last=(last+(Math.random()*2-1)*0.02)/1.02; data[i]=last*3.5 }
-    }
-    const src = audioCtx.createBufferSource()
-    src.buffer = buf; src.loop = true
-    const ng = audioCtx.createGain(); ng.gain.value = 0.05
-    src.connect(ng); ng.connect(dest); src.start()
-    return { src, ng }
-  }
-
-  function _createOscs(freq, audioCtx, dest) {
-    const t = audioCtx.currentTime
-    const g = audioCtx.createGain()
-    g.gain.setValueAtTime(0.001, t)
-    g.gain.linearRampToValueAtTime(ADSR.sustain, t + ADSR.attack)
-    g.connect(dest)
-
-    const make = (hz, amp) => {
-      const o = audioCtx.createOscillator()
-      o.type = 'sine'; o.frequency.value = hz
-      const og = audioCtx.createGain(); og.gain.value = amp
-      o.connect(og); og.connect(g); o.start()
-      return o
-    }
-    const list = [
-      make(freq,       1.00),
-      make(freq * 2,   0.18),
-      make(freq * 3,   0.07),
-      make(freq * 0.5, 0.04),
-    ]
-    gainNode.current = g
-    oscs.current = list
-  }
-
-  function start(freq, noiseType = 'pink') {
+  function start(freq) {
     try {
-      // Reusa contexto existente se disponível
-      let c = ctx.current
-      if (!c || c.state === 'closed') {
-        c = new (window.AudioContext || window.webkitAudioContext)()
-        ctx.current = c
-      }
-      // Para osciladores anteriores sem fechar o contexto
-      oscs.current.forEach(o => { try { o.stop() } catch(e) {} })
-      try { noiseRef.current?.stop() } catch(e) {}
-      oscs.current = []; noiseRef.current = null; gainNode.current = null
-      // Resume se suspenso (política de autoplay)
-      if (c.state === 'suspended') c.resume()
-      _createOscs(freq, c, c.destination)
-      const { src, ng } = _makeNoise(noiseType, c, c.destination)
-      noiseRef.current = src; noiseGainRef.current = ng
-    } catch(e) { console.error('OHM audio start error', e) }
-  }
-
-  function stop(andClose = true) {
-    try {
-      if (gainNode.current && ctx.current) {
-        const t = ctx.current.currentTime
-        gainNode.current.gain.cancelScheduledValues(t)
-        gainNode.current.gain.setValueAtTime(gainNode.current.gain.value, t)
-        gainNode.current.gain.linearRampToValueAtTime(0.001, t + ADSR.release)
-        setTimeout(() => {
-          oscs.current.forEach(o => { try { o.stop() } catch(e) {} })
-          try { noiseRef.current?.stop() } catch(e) {}
-          if (andClose) { try { ctx.current?.close() } catch(e) {} }
-          gainNode.current = null
-          oscs.current = []; noiseRef.current = null
-        }, ADSR.release * 1000 + 100)
-      }
+      stop()
+      const c = new (window.AudioContext || window.webkitAudioContext)()
+      const o = c.createOscillator()
+      const g = c.createGain()
+      o.connect(g); g.connect(c.destination)
+      o.frequency.value = freq; o.type = 'sine'
+      g.gain.setValueAtTime(0, c.currentTime)
+      g.gain.linearRampToValueAtTime(0.1, c.currentTime + 1.5)
+      o.start()
+      ctx.current = c; osc.current = o; gain.current = g
     } catch(e) {}
   }
 
+  function stop() {
+    if (gain.current && ctx.current) {
+      try { gain.current.gain.linearRampToValueAtTime(0, ctx.current.currentTime + 0.8) } catch(e) {}
+      setTimeout(() => { try { ctx.current?.close(); ctx.current = null } catch(e) {} }, 900)
+    }
+  }
+
   function changeFreq(freq) {
-    if (!gainNode.current || !ctx.current) return
-    const t = ctx.current.currentTime
-    // Fade out
-    gainNode.current.gain.cancelScheduledValues(t)
-    gainNode.current.gain.setValueAtTime(gainNode.current.gain.value, t)
-    gainNode.current.gain.linearRampToValueAtTime(0.001, t + FADE)
-    const oldOscs = oscs.current
-    const oldNoise = noiseRef.current
-    setTimeout(() => {
-      oldOscs.forEach(o => { try { o.stop() } catch(e) {} })
-      try { oldNoise?.stop() } catch(e) {}
-      _createOscs(freq, ctx.current, ctx.current.destination)
-      const { src, ng } = _makeNoise('pink', ctx.current, ctx.current.destination)
-      noiseRef.current = src; noiseGainRef.current = ng
-    }, FADE * 1000)
+    if (osc.current && ctx.current) {
+      try { osc.current.frequency.linearRampToValueAtTime(freq, ctx.current.currentTime + 1.2) } catch(e) {}
+    }
   }
 
   return { start, stop, changeFreq }
 }
-
-function useMysticAudio() {
-  const engineRef = useRef(null)
-  function getEngine() {
-    if (!engineRef.current) engineRef.current = new OhmSpatialAudio()
-    return engineRef.current
-  }
-  function start(profile) {
-    const sig = computeSignature({
-      birthdate: profile.birthdate, birthtime: profile.birthtime,
-      name: profile.name, intention: profile.intention || 'elevacao'
-    })
-    getEngine().play(sig)
-    return sig
-  }
-  function stop() { engineRef.current && engineRef.current.stop() }
-  return { start, stop }
-}
-
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 
@@ -746,12 +643,12 @@ function PlayerPanel({ profile, cycle }) {
 function Overview({ profile, cycle, setPage }) {
   const mantra = generateMantra(profile.name)
   const vedic = vedicNum(profile.birthdate)
-  const audio = useMysticAudio()
+  const audio = useAudio()
   const [playing, setPlaying] = useState(false)
 
   function togglePlay() {
     if (playing) { audio.stop(); setPlaying(false) }
-    else { audio.start(profile); setPlaying(true) }
+    else { audio.start(profile.frequency || 528); setPlaying(true) }
   }
 
   return (
@@ -796,9 +693,6 @@ function Overview({ profile, cycle, setPage }) {
             <button className={`play-btn${playing ? ' on' : ''}`} onClick={togglePlay}>
               {playing ? 'Pausar vibração' : 'Ativar vibração'}
             </button>
-            <div style={{fontSize:'.62rem',color:'var(--textg)',textAlign:'center',marginTop:'.5rem',lineHeight:1.4}}>
-              ◖ Experiência imersiva — melhor com fones de ouvido
-            </div>
           </div>
         </div>
 
@@ -1061,8 +955,6 @@ function Dashboard({ profile, onLogout }) {
     overview: 'Visão geral',
     player: 'Meu mantra',
     cycles: 'Ciclos védicos',
-    frequencia: 'Minha frequência',
-    tutorial: 'Quando usar',
     profile: 'Perfil',
   }
 
@@ -1070,8 +962,6 @@ function Dashboard({ profile, onLogout }) {
     { id:'overview', icon:'⊞', label:'Visão geral' },
     { id:'player',   icon:'◎', label:'Meu mantra' },
     { id:'cycles',   icon:'↻', label:'Ciclos védicos' },
-    { id:'frequencia', icon:'◉', label:'Minha frequência' },
-    { id:'tutorial',   icon:'❉', label:'Quando usar' },
   ]
 
   const navAccount = [
@@ -1158,8 +1048,6 @@ function Dashboard({ profile, onLogout }) {
               </div>
             </div>
           )}
-          {page === 'frequencia' && <FrequencyJourney profile={profile} />}
-          {page === 'tutorial' && <UsageTutorial />}
           {page === 'profile' && <ProfilePage profile={profile} onLogout={onLogout} />}
         </div>
       </div>

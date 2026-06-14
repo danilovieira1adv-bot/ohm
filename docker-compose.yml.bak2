@@ -12,8 +12,6 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4001
-      - JWT_SECRET=d1cc7c22abe1ba2491a1416ca17ad065ad31faab2dd3f3b2d5ebb8c43f4ed9fa
-      - CORS_ORIGINS=http://187.77.60.16:4100,http://localhost:4100
     networks:
       - ohm-net
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ŌHM — Vibrações Sagradas Personalizadas | Som Imersivo</title>
-<meta name="description" content="Streaming vibracional personalizado por cinco tradições milenares: védica, cabalística, hermética, zoroastrista e sânscrita. Som imersivo sintonizado com a ressonância Schumann da Terra. Para você, seu espaço ou negócio."/>
+<title>ŌHM — Vibrações Sagradas Personalizadas | Streaming 24/7</title>
+<meta name="description" content="O único sistema de streaming vibracional personalizado do Brasil. Baseado nas 7 frequências Solfeggio, sânscrito védico e tradições milenares. Para você, seu espaço ou negócio."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -297,7 +297,7 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
 <nav>
   <div class="nlogo">ŌHM</div>
   <ul class="nlinks">
-    <li><a href="#frequencias">As Tradições</a></li>
+    <li><a href="#frequencias">As 7 Frequências</a></li>
     <li><a href="#como-funciona">Como funciona</a></li>
     <li><a href="#usos">Para seu espaço</a></li>
     <li><a href="#planos">Planos</a></li>
@@ -310,10 +310,10 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
   <div class="hero-mesh"></div>
   <div class="om-hero">ॐ</div>
 
-  <div class="hero-live rv"><span class="live-dot"></span>Som imersivo · Cinco tradições milenares</div>
-  <p class="hero-eyebrow">Védico · Cabalístico · Hermético · Zoroastrista · Schumann</p>
+  <div class="hero-live rv"><span class="live-dot"></span>Streaming ao vivo — servidores ativos 24/7</div>
+  <p class="hero-eyebrow">Sânscrito védico · 7 frequências Solfeggio · Streaming personalizado</p>
   <h1 class="hero-title">ŌHM<span>O som que foi feito para você</span></h1>
-  <p class="hero-desc">Seu nome, sua data e sua hora de nascimento, lidos por cinco tradições milenares, tornam-se um acorde sonoro só seu — espacializado em 3D e pulsando com a ressonância natural da Terra. Uma prática contemplativa de mentalização, transparente e auditável. Para você, seu espaço ou seu negócio.</p>
+  <p class="hero-desc">O único sistema de streaming vibracional personalizado do Brasil. Seu nome, sua data de nascimento, sua hora de entrada no mundo — transformados nas 7 frequências sagradas Solfeggio em rotação contínua. Para você, seu espaço ou seu negócio.</p>
 
   <div class="hero-acts rv">
     <a href="http://187.77.60.16:4100" class="btn-p">Descobrir minhas frequências</a>
@@ -339,7 +339,7 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
 
 <!-- TRUST -->
 <div class="trust">
-  <div class="trust-item"><span class="trust-dot"></span>5 tradições milenares</div>
+  <div class="trust-item"><span class="trust-dot"></span>7 frequências Solfeggio</div>
   <div class="trust-item"><span class="trust-dot"></span>Sânscrito védico — 3.000 anos</div>
   <div class="trust-item"><span class="trust-dot"></span>Hermetismo clássico</div>
   <div class="trust-item"><span class="trust-dot"></span>Zoroastrismo — Avesta</div>
@@ -353,7 +353,7 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
 <section class="sec" id="frequencias">
   <div class="freq7-intro rv">
     <span class="sec-label">O fundamento sonoro</span>
-    <h2 class="sec-title">Cinco tradições, <em>um som só seu</em></h2>
+    <h2 class="sec-title">As 7 Frequências <em>Solfeggio</em></h2>
     <p class="sec-body" style="margin:0 auto;text-align:center">Sistema de 7 tons com origem no canto gregoriano medieval, documentado pelo Dr. Joseph Puleo nos anos 1990 a partir de manuscritos bíblicos em numerologia latina. Cada frequência corresponde a uma qualidade específica — e você recebe as 4 mais alinhadas com sua intenção em rotação contínua.</p>
   </div>
 
@@ -427,8 +427,8 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
 <div class="divider rv"></div>
 <section class="sec" id="como-funciona">
   <span class="sec-label rv">Total transparência</span>
-  <h2 class="sec-title rv">Como chegamos <em>à sua frequência única</em></h2>
-  <p class="sec-body rv">Sua frequência nasce de um acorde de quatro vozes sonoras, calculadas por cinco tradições milenares a partir dos seus dados de nascimento. Tudo é determinístico, público e auditável — nada é aleatório. Aqui explicamos cada camada com precisão.</p>
+  <h2 class="sec-title rv">Como chegamos <em>à sua sequência única</em></h2>
+  <p class="sec-body rv">Você recebe 4 das 7 frequências em rotação — selecionadas e ordenadas com base em quatro camadas de dados pessoais. Aqui explicamos cada passo com precisão matemática.</p>
 
   <div class="persona-flow rv">
     <div class="pf-block">
@@ -442,27 +442,21 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
       <div class="pf-arrow"></div>
       <div class="pf-num">02</div>
       <div class="pf-title">Número védico (Jyotish)</div>
-      <div class="pf-desc">Na astrologia védica, a soma reduzida da data de nascimento revela o Graha (planeta regente). Cada planeta corresponde a uma frequência Solfeggio — a sua nota-raiz, a voz fundamental do acorde.</div>
+      <div class="pf-desc">Na astrologia védica, a soma reduzida da data de nascimento revela o Graha (planeta regente). Cada planeta tem uma frequência dominante que define a ordem de rotação da sequência.</div>
       <div class="pf-example">15/03/1985 → soma 32 → reduz para 5 → Mercúrio → frequência base 528 Hz → rotação começa em 528</div>
     </div>
     <div class="pf-block">
       <div class="pf-arrow"></div>
       <div class="pf-num">03</div>
       <div class="pf-title">Planeta das Horas (Hermetismo)</div>
-      <div class="pf-desc">O Corpus Hermeticum (séc. II d.C.) atribui a cada hora do dia um planeta regente em ciclos de 24h. A hora de nascimento determina o "Planeta das Horas" — que afina uma das vozes harmônicas do seu acorde.</div>
+      <div class="pf-desc">O Corpus Hermeticum (séc. II d.C.) atribui a cada hora do dia um planeta regente em ciclos de 24h. A hora de nascimento determina o "Planeta das Horas" — que ajusta o ritmo de troca entre frequências.</div>
       <div class="pf-example">Nascido às 14h35 numa quinta → hora 9 de Quinta → Mercúrio → ritmo de 21 minutos por frequência</div>
     </div>
     <div class="pf-block">
       <div class="pf-num">04</div>
       <div class="pf-title">Yazata zoroastrista + Intenção</div>
-      <div class="pf-desc">O calendário do Avesta atribui um Yazata (arquétipo divino) a cada dia do ano. Combinado com a intenção escolhida, ele define a textura e o timbre do seu som — puro, harmônico ou com a profundidade do ruído rosa.</div>
-      <div class="pf-example">Intenção: Prosperidade → bija SHRIM · Yazata do dia define o timbre</div>
-    </div>
-    <div class="pf-block">
-      <div class="pf-num">05</div>
-      <div class="pf-title">Ressonância Schumann — o pulso da Terra</div>
-      <div class="pf-desc">A Terra tem uma frequência natural de fundo: 7,83 Hz, a ressonância Schumann. Grave demais para ser ouvida, ela faz todo o seu acorde pulsar suavemente nesse ritmo — uma forma fisicamente real de sintonizar a prática com o planeta. O som também é espacializado em 3D, girando ao redor de você em fones.</div>
-      <div class="pf-example">O som inteiro respira 7,83 vezes por segundo · imersivo, otimizado para fones</div>
+      <div class="pf-desc">O calendário do Avesta atribui um Yazata (arquétipo divino) a cada dia do ano. Combinado com a intenção escolhida, define quais 4 das 7 frequências você recebe.</div>
+      <div class="pf-example">Intenção: Prosperidade → sequência base: 528 · 639 · 741 · 852 Hz<br>Yazata Mihr (dia 16) → prioriza 639 Hz (conexão e contrato)</div>
     </div>
   </div>
 
@@ -496,7 +490,7 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
         <div class="dr-freq-name" id="dr-freq-name"></div>
       </div>
       <div class="dr-sequence">
-        <div class="dr-seq-title">As vozes do seu acorde</div>
+        <div class="dr-seq-title">Sua sequência de rotação — 24h</div>
         <div id="dr-sequence"></div>
       </div>
     </div>
@@ -869,9 +863,6 @@ footer{border-top:.5px solid var(--border);padding:3rem 4rem;display:grid;grid-t
     <a href="#">Verificar frequência</a>
     <a href="http://187.77.60.16:4100">App</a>
   </div>
-<div style="max-width:760px;margin:2rem auto 0;padding:1.25rem 1.5rem;text-align:center;font-size:.7rem;line-height:1.7;color:rgba(226,217,243,.35);border-top:.5px solid rgba(196,181,253,.08)">
-O ŌHM é uma ferramenta de meditação, contemplação e mentalização. As tradições místicas e intenções (saúde, prosperidade, equilíbrio, força vital) são propostas como prática simbólica que você escolhe vivenciar, não como efeito fisiológico ou resultado garantido. O ŌHM não substitui acompanhamento médico, psicológico ou terapêutico, e não trata, cura ou previne doenças.
-</div>
 </footer>
 
 <script>
